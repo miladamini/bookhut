@@ -392,7 +392,7 @@ from django.http import HttpResponse
 from django.shortcuts import redirect
 from zeep import Client
 
-MERCHANT = '5878c037-ada9-4c7c-8231-8d76aff222ea'
+MERCHANT = 'your MERCHANT code'
 email = ''
 # from .tasks import payment_completed
 
@@ -489,42 +489,3 @@ class verify(View):
 
             return render(request, "cancel.html")
 
-# email = ''
-# MERCHANT = 'cdc3ce39-524c-4869-aabc-7af4a39b7705'
-# # from .tasks import payment_completed
-# client = Client('https://www.zarinpal.com/pg/services/WebGate/wsdl')
-# description = "وبسایت آکورمان"  # Required
-# # mobile = '09123456789'  # Optional
-# CallbackURL = 'https://akoroman.ir/verifyboy'  # Important: need to edit for realy server.
-
-
-# class send_req2(View):
-#     def get(self, request):
-#         us = User.objects.filter(phone=request.user).first()
-#         mobile = us.phone
-#         amount = self.request.session['eshtrak']['many']
-#         result = client.service.PaymentRequest(MERCHANT, amount, description, email, mobile, CallbackURL)
-#         if result.Status == 100:
-#             return redirect('https://www.zarinpal.com/pg/StartPay/' + str(result.Authority))
-#         else:
-#             return HttpResponse('Error code: ' + str(result.Status))
-
-
-# class verify2(View):
-#     def get(self, request):
-#         user = ssion.objects.filter(user=request.user).first()
-#         if request.GET.get('Status') == 'OK':
-#             amount =  self.request.session['eshtrak']['many']
-#             result = client.service.PaymentVerification(MERCHANT, request.GET['Authority'], amount)
-#             if result.Status == 100:
-#                 us = User.objects.filter(phone=request.user).first()
-#                 buy.objects.create(user=us,roman_id=self.request.session['eshtrak']['title'],many=self.request.session['eshtrak']['many'])
-#                 return render(request, "success.html", {"id": result.RefID})
-#             elif result.Status == 101:
-
-#                 return render(request, "submited.html", {"status": result.Status})
-#             else:
-
-#                 return render(request, "failed.html", {"status": result.Status})
-#         else:
-#             return render(request, "cancel.html")
