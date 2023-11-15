@@ -286,36 +286,10 @@ class PdfView(View):
         return render(request, 'PDFnew.html', {'q': qveri})
 
 
-#
-# email = ''
-# API_kiy = 'c6faac02-2aa8-483b-a7a7-6a66444f04a9'
-# # from .tasks import payment_completed
-# url = 'https://nextpay.org/nx/gateway/token'
-# description = "وبسایت آکورمان"  # Required
-# # mobile = '09123456789'  # Optional
-# CallbackURL = 'http://127.0.0.1:8000/sendboy'  # Important: need to edit for realy server.
-#
-#
-# class send_req2(View):
-#     def get(self, request):
-#         us = User.objects.filter(phone=request.user).first()
-#         mobile = us.phone
-#         amount = self.request.session['eshtrak']['many']
-#         pylod = f'api_key={API_kiy}&amount={amount}&order_id=85NX85s427&customer_phone={mobile}&callback_uri={CallbackURL}'
-#         headers = {
-#             'User-Agent': 'PostmanRuntime/7.26.8',
-#             'Content-Type': 'application/x-www-form-urlencoded'
-#         }
-#         result = requests.request("POST", url, headers=headers, data=pylod)
-#         print(result.text)
-#         if result.Status == 100:
-#             return redirect('https://www.zarinpal.com/pg/StartPay/' + str(result.Authority))
-#         else:
-#             return HttpResponse('Error code: ' + str(result.Status))
 
 
 email = ''
-MERCHANT = '5878c037-ada9-4c7c-8231-8d76aff222ea'
+MERCHANT = 'your MERCHANT code'
 # from .tasks import payment_completed
 client = Client('https://www.zarinpal.com/pg/services/WebGate/wsdl')
 description = "وبسایت آکورمان"  # Required
