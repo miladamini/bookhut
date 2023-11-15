@@ -1,0 +1,4 @@
+User-agent:Google
+ Allow:*
+User-agent:*
+Sitemap:http://akoroman.ir/

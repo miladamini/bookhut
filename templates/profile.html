@@ -1,0 +1,95 @@
+{% extends 'base.html' %}{% load static %}
+{% block title %}
+    <title>پروفایل</title>
+{% endblock title %}
+{% block home %}
+    <section class="mb-5">
+        <div class="container">
+            <div class="col-12 pt-5 ">
+            </div>
+            <div class="">
+                <div class="not-found bg-white rounded border p-3 pb-5">
+                    <h4>کاربر : {{ request.user }}</h4>
+
+                    <table class="table table-bordered border-dark text-center">
+                        <h3 class="text-center">بخش اشتراک ویژه </h3>
+                        <thead>
+                        <tr>
+                            <th scope="col">مدت سفارش</th>
+                            <th scope="col">قیمت</th>
+                            <th scope="col">زمان اتمام اشتراک</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>{{ mi.modate }}</td>
+                            <td>{{ mi.kaymat }}</td>
+                            <td>{{ mi.time }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <h5 class="alert alert-danger text-center ">توجه داشته باشید وقتی روی دکمه لغو کردن بزنید اشتراک شما
+                        کاملا حذف خواهد شد</h5>
+                    <table class="table table-bordered border-dark text-center">
+                        <thead>
+                        <tr>
+                            <th scope="col">شناسه</th>
+                            <th scope="col">وضعیت</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>{{ mi.id }}</td>
+                            <td>
+                                {% if request.user.is_authenticated %}
+                                    {% if request.user.eshtrak == True or Buy == True %}
+                                        <a href="{% url 'delmi' %}">
+                                            <button type="submit" class="button btn-danger">لغو کردن</button>
+                                        </a>
+
+                                    {% else %}
+
+                                        <a href="{% url 'eshtrak' %}">
+                                            <button type="submit" class="button btn-danger">خرید اشتراک ویژه</button>
+                                        </a>
+                                    {% endif %}
+                                {% else %}
+                                    <a href="{% url 'eshtrak' %}">
+                                        <button type="submit" class="button btn-danger">خرید اشتراک ویژه</button>
+                                    </a>
+                                {% endif %}
+
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+
+                    <table class="table table-bordered border-dark text-center">
+                        <h3 class="text-center">بخش خرید رمان ها </h3>
+                        <thead>
+                        <tr>
+                            <th scope="col">نام رمان</th>
+                            <th scope="col">قیمت</th>
+                            <th scope="col">شناسه</th>
+                        </tr>
+                        </thead>
+                        {% for item  in Buy %}
+                            <tbody>
+                            <tr>
+                                <td>{{ item.roman }}</td>
+                                <td>{{ item.many }}تومان</td>
+                                <td>{{ item.id }}</td>
+                            </tr>
+                            </tbody>
+                        {% endfor %}
+
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+    </section>
+{% endblock %}

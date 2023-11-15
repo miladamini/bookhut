@@ -1,0 +1,10 @@
+{% extends 'base.html' %}{% load static %}
+
+{% block home %}
+    {% for foo in q %}
+        <p style="padding: 100px">
+            {{ foo.body |safe }}
+        </p>
+    {% endfor %}
+
+{% endblock home %}

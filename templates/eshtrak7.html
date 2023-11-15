@@ -1,0 +1,37 @@
+{% extends 'base.html' %}{% load static %}
+{% block title %}
+    <title>کد تخفیف اشتراک</title>
+{% endblock title %}
+{% block home %}
+    <section class="mb-5">
+        <div class="container">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-12 pt-5 ">
+                </div>
+                <div class="text-center">
+                    <div class="not-found bg-white rounded border p-3 pb-5">
+                        <h3>خرید اشتراک ویژه</h3>
+
+                        <div class="row justify-content-center align-items-center">
+                            <h4 class="p-3">خرید اشتراک {{ or2 }} تومان </h4>
+                            <h4 class="p-3">مبلغ قابل پرداخت {{ or }} تومان</h4>
+                        </div>
+                        {% if er == True %}
+                            <h5 class="alert alert-danger">کد تخفیف وارد شده اشتباه یا منقضی شده میباشد</h5>
+                        {% endif %}
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            <input type="text" name="code" placeholder="کد تخفیف">
+                            <button type="submit" class="mt-2">اعمال کردن</button>
+                        </form>
+                        <h4 class="pt-5">اگر از خرید خود اطمینان دارید روی دکمه خرید کلیک کنید تا به درگاه پرداخت هدایت
+                            بشید</h4>
+                        <a href="{% url 'sen' %}">
+                            <button class="mt-5 w-50">خرید</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

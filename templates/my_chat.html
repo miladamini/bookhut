@@ -1,0 +1,11 @@
+{% extends 'base.html' %}{% load static %}
+{% block title %}
+    <title>چت کلبه کتاب</title>
+{% endblock title %}
+{% block home %}
+   <div class="pt-5" style="padding-right: 10%">
+    <script src="https://minnit.chat/js/embed.js" defer></script>
+    <minnit-chat data-chatname="https://organizations.minnit.chat/450427467831860/Main?embed&nickname="
+                 data-style="width:90%;height:500px;max-height:90vh;"></minnit-chat>
+   </div>
+{% endblock home %}

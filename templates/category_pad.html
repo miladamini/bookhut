@@ -1,0 +1,102 @@
+{% extends 'base.html' %}{% load static %}
+{% block title %}
+    <title>پادکست ها</title>
+{% endblock title %}
+{% block home %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb-wrap p-3 bg-white my-4 rounded">
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="mb-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="title-box mb-2">
+                        <p class="m-0 p-0">دسته بندی : <span class="text-primary">پادکست</span></p>
+                    </div>
+                </div>
+                {% for item in post %}
+                    <div class="col-sm-6 col-md-6 col-lg-4 my-3">
+                        <div class="blg-wrap bg-white pb-3">
+                            <figure class="position-relative">
+                                <img src="{{ item.img.url }}" alt="" class="w-100">
+                                <figcaption class="position-absolute w-100 h-100"><span
+                                        class="blg-dt">{{ item.created }}</span>
+                                </figcaption>
+                            </figure class="position-relative">
+                            <div class="px-3 py-1 text-start">
+                                <span class="blg-cat-name d-inline-block bg-info py-1 px-2">مطالب روز</span>
+                            </div>
+                            <a href="#">
+                                <h4 class="blg-title p-3 mx-5 text-dark border-bottom overflow-hidden">{{ item.title }}</h4>
+                            </a>
+                            <div class="post-type d-flex p-3 pb-0">
+                                <i class="bi bi-headphones d-inline-block text-info text-center"></i>
+                                <span>پادکست</span>
+                            </div>
+                            <p class="p-4 overflow-hidden">{{ item.body }} </p>
+                        </div>
+                        <a href="{% url 'PodcastView' item.slug %}">
+                            <button type="button" class="btn btn-primary m-3 btn-slide">دیدن</button>
+                        </a>
+                    </div>
+
+                {% endfor %}
+
+
+            </div>
+        </div>
+    </section>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 mb-5">
+                <div class="pagination-wrap">
+
+                    {% if post.has_other_pages %}
+                        <ul class="d-flex justify-content-center">
+
+
+                            {% if post.has_previous %}
+                                <li><a href="?page={{ post.previous_page_number }}"><<</a></li>
+                            {% endif %}
+
+                            {% for i in post.paginator.page_range %}
+                                {% if post.number == i %}
+                                    <li class="active"><a href="?page={{ i }}">{{ i }}</a></li>
+                                {% else %}
+                                    <li><a href="?page={{ i }}">{{ i }}</a></li>
+                                {% endif %}
+                            {% endfor %}
+
+                            {% if post.has_next %}
+                                <li><a href="?page={{ post.next_page_number }}">>></a></li>
+                            {% endif %}
+                        </ul>
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-L2W3M8F38X"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-L2W3M8F38X');
+</script>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TWRLRJ7"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+{% endblock home %}

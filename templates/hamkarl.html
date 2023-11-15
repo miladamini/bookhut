@@ -1,0 +1,77 @@
+{% extends 'base.html' %}{% load static %}
+{% block title %}
+    <title>همکاری با ما</title>
+{% endblock title %}
+{% block home %}
+    <section class="mb-5">
+        <div class="container">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-12">
+                    <div class="title-box mb-2">
+
+                    </div>
+                </div>
+                <div class="">
+                    <div class="not-found bg-white rounded border p-3 pb-5">
+                        <div class="text-center">
+                            <h4>همکاری با ما</h4>
+                            <p>با عرض سلام خدمت شما دوست عزیز</p>
+                            <p>در وبسایت آکو رمان شما میتوانی به چند روش مختلف کسب درامد بکنی و پول به دست بیاری</p>
+                            <p>1-گذاشتن رمان</p>
+                            <p>2-نوشتن رمان</p>
+                            <p>3-خواندن کتاب</p>
+                            <p>4-تبلیغات</p>
+                        </div>
+                        <div>
+                            <h5>توضیحات</h5>
+                            <h6>توضیحات شماره اول :</h6>
+                            <p>شما میتوانید با گذاشتن رمان هایی ک ادمین اصلی سایت به شما میدهد ان را در پنل مدیریت سایت
+                                قرار دهید و کسب درامد بکنید</p>
+                            <h6>توضیحات شماره دوم :</h6>
+                            <p>شما میتوانید رمان دلخواه خود را بنویسید و ان را وبسایت اکو رمان به فروش بذارین و کسب
+                                درامد بکنید</p>
+                            <h6>توضیحات شماره سوم :</h6>
+                            <p>ادمین وبسایت به شما کتاب هایی را میدهد و شما باید کتاب را بخوانید و صدای خود را ظبط کنید
+                                و به ادین بفرستید و باین کار کسب درامد بکنید</p>
+                            <h6>توضیحات شماره چهارم :</h6>
+                            <p>در این قسمت یک کد تخفیف به شما داده میشود و شما باید وبسایت را تبلیغ کنید به مقدار
+                                استفاده از کد تخفیف شما میتوانید کسب درامد با قیمت بالا داشته باشید</p>
+                            <h6>در صورت داشتن سوال یا درخواست رهنمایی های بیشتر میتوانید به پشتیانی در
+                                تلگرام یا درقسمت تماس باما سوال خود را بیان نمایید</h6>
+                            <h6 class="pb-4">شما باید فرم زیر را پر کنید اسم خود را وارد کنید اطلاعاتی کامل در مورد خود
+                                و کاری ک میخواهید انجام بدهید را قسمت توضیحات وارد نمایید </h6>
+
+                        </div>
+                        <form action="" method="post" enctype="multipart/form-data" class="col-md-5 shadow p-3 bg-light container">
+                            {% csrf_token %}
+                            <h4 class="text-center">فرم ارسال اطلاعات</h4>
+                             {{ form.errors }}
+                            <label for="" class="form-label">اسم شما:</label>
+                            {{ form.name }}
+                            <label for="" class="form-label"> توضیحات :</label>
+                            {{ form.text }}
+                            <label for="" class="form-label">انتخواب فایل در صورت لزوم:</label>
+                            {{ form.file }}
+                            {% for error in form.user.errors %}
+                                <div class="alert alert-danger">
+                                    <p> {{ error }}</p>
+                                </div>
+                            {% endfor %}
+
+
+
+                            <button type="submit" class="mt-4">ارسال کردن</button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+    
+    
+
+
+{% endblock %}
+

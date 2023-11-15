@@ -1,0 +1,400 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+            'gtm.start':
+                new Date().getTime(), event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-TWRLRJ7');</script>
+    <script>
+        !function (e, t, n) {
+            e.yektanetAnalyticsObject = n, e[n] = e[n] || function () {
+                e[n].q.push(arguments)
+            }, e[n].q = e[n].q || [];
+            var a = t.getElementsByTagName("head")[0], r = new Date,
+                c = "https://cdn.yektanet.com/superscript/MePvKtRu/native-akoroman.ir-33886/yn_pub.js?v=" + r.getFullYear().toString() + "0" + r.getMonth() + "0" + r.getDate() + "0" + r.getHours(),
+                s = t.createElement("link");
+            s.rel = "preload", s.as = "script", s.href = c, a.appendChild(s);
+            var l = t.createElement("script");
+            l.async = !0, l.src = c, a.appendChild(l)
+        }(window, document, "yektanet");
+    </script>
+    <!-- End Google Tag Manager -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="کلی رمان های عاشقانه و ترسناک دارای کلی پادکست و کتاب صوتی ">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="author" content="John Doe">
+    <meta name=“googlebot” content=“noindex”>
+    <meta name=“robots” content=“noindex”>
+    <meta name=“818773” content=“enamad”>
+    <meta name=“enamad” content=“818773”>
+
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.theme.default.css' %}">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+
+
+    <link rel="stylesheet" media="screen" href="{% static 'prof/vendor/simplebar/dist/simplebar.min.css' %}"/>
+    <link rel="stylesheet" media="screen"
+          href="{% static 'prof/vendor/persain-date/persian-datepicker.min.css' %}"/>
+    <link rel="stylesheet" media="screen" href="{% static 'prof/css/theme.min.css' %}"/>
+    <link rel="icon" href="{% static 'img/21.png' %}" type="image/png">
+
+    {% block title %}
+
+    {% endblock title %}
+    <!--<title>akoroman | آکو رمان</title>-->
+</head>
+<script>
+    function milad() {
+
+    }
+</script>
+<body>
+
+{#<style>#}
+{#    .page-loading {#}
+{#        position: fixed;#}
+{#        top: 0;#}
+{#        right: 0;#}
+{#        bottom: 0;#}
+{#        left: 0;#}
+{#        width: 100%;#}
+{#        height: 100%;#}
+{#        -webkit-transition: all .4s .2s ease-in-out;#}
+{#        transition: all .4s .2s ease-in-out;#}
+{#        background-color: #fff;#}
+{#        opacity: 0;#}
+{#        visibility: hidden;#}
+{#        z-index: 9999;#}
+{#    }#}
+{##}
+{#    .page-loading.active {#}
+{#        opacity: 1;#}
+{#        visibility: visible;#}
+{#    }#}
+{##}
+{#    .page-loading-inner {#}
+{#        position: absolute;#}
+{#        top: 50%;#}
+{#        left: 0;#}
+{#        width: 100%;#}
+{#        text-align: center;#}
+{#        -webkit-transform: translateY(-50%);#}
+{#        transform: translateY(-50%);#}
+{#        -webkit-transition: opacity .2s ease-in-out;#}
+{#        transition: opacity .2s ease-in-out;#}
+{#        opacity: 0;#}
+{#    }#}
+{##}
+{#    .page-loading.active > .page-loading-inner {#}
+{#        opacity: 1;#}
+{#    }#}
+{##}
+{#    .page-loading-inner > span {#}
+{#        display: block;#}
+{#        font-size: 2rem;#}
+{#        font-weight: normal;#}
+{#        color: #ff7300;#}
+{#    }#}
+{##}
+{#    .page-spinner {#}
+{#        display: inline-block;#}
+{#        width: 3.75rem;#}
+{#        height: 3.75rem;#}
+{#        margin-bottom: 3.75rem;#}
+{#        vertical-align: text-bottom;#}
+{#        border: .50em solid #ff7300;#}
+{#        border-right-color: transparent;#}
+{#        border-radius: 50%;#}
+{#        -webkit-animation: spinner .75s linear infinite;#}
+{#        animation: spinner 1.75s linear infinite;#}
+{#    }#}
+{##}
+{#    @-webkit-keyframes spinner {#}
+{#        100% {#}
+{#            -webkit-transform: rotate(360deg);#}
+{#            transform: rotate(360deg);#}
+{#        }#}
+{#    }#}
+{##}
+{#    @keyframes spinner {#}
+{#        100% {#}
+{#            -webkit-transform: rotate(360deg);#}
+{#            transform: rotate(360deg);#}
+{#        }#}
+{#    }#}
+{##}
+{#</style>#}
+{#<script>#}
+{#    (function () {#}
+{#        window.onload = function () {#}
+{#            var preloader = document.querySelector('.page-loading');#}
+{#            preloader.classList.remove('active');#}
+{#            setTimeout(function () {#}
+{#                preloader.remove();#}
+{#            }, 2000);#}
+{#        };#}
+{#    })();#}
+{##}
+{#</script>#}
+{#<div class="page-loading active">#}
+{#    <div class="page-loading-inner">#}
+{#        <div class="page-spinner"></div>#}
+{#        <span>لطفا منتظر باشید</span>#}
+{#    </div>#}
+{#</div>#}
+<header>
+    <div class="index-top position-relative w-100 bg-white">
+        <div class="main-menu">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-7  pt-2">
+                        <nav class="navbar navbar-expand-lg navbar-light me-4">
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                    aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse"
+                                 id="navbarSupportedContent">
+                                <ul class="navbar-nav mb-2 mb-lg-0">
+                                    <li class="nav-item">
+                                        <a class="nav-link {% if request.resolver_match.url_name == 'homeView' %}active{% endif %}"
+                                           aria-current="page" href="{% url 'homeView' %}">خانه</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link {% if request.resolver_match.url_name == 'catgory' %}active{% endif %}"
+                                           href="{% url 'catgory' %}">رمان ها</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link {% if request.resolver_match.url_name == 'catgory_pad' %}active{% endif %}"
+                                           href="{% url 'catgory_pad' %}">پادکست ها</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link {% if request.resolver_match.url_name == 'contact' %}active{% endif %}"
+                                           href="{% url 'contact' %}" tabindex="-1"
+                                           aria-disabled="true">تماس با ما</a>
+                                    </li>
+                                    <!--<li class="nav-item">-->
+                                    <!--    <a class="nav-link {% if request.resolver_match.url_name == 'abute' %}
+                                        active{% endif %}" href="{% url 'abute' %}" tabindex="-1"-->
+                                    <!--       aria-disabled="true">درباره ی ما</a>-->
+                                    <!--</li>-->
+                                    <li class="nav-item">
+                                        {% if request.user.is_authenticated %}
+                                            <a class="nav-link {% if request.resolver_match.url_name == 'hm' %}active{% endif %}"
+                                               href="{% url 'hm' %}" tabindex="-1"
+                                               aria-disabled="true">همکاری با ما</a>
+                                        {% else %}
+                                            <a class="nav-link {% if request.resolver_match.url_name == 'acoont:register' %}active{% endif %}"
+                                               href="{% url 'acoont:register' %}" tabindex="-1"
+                                               aria-disabled="true">همکاری با ما</a>
+                                        {% endif %}
+                                    </li>
+                                    <li class="nav-item">
+                                        {% if request.user.is_authenticated %}
+                                            <a class="nav-link {% if request.resolver_match.url_name == 'learning' %}active{% endif %}"
+                                               href="{% url 'learning' %}" tabindex="-1"
+                                               aria-disabled="true">آموزش های نویسندگی</a>
+                                        {% else %}
+                                            <a class="nav-link {% if request.resolver_match.url_name == 'acoont:register' %}active{% endif %}"
+                                               href="{% url 'acoont:register' %}" tabindex="-1"
+                                               aria-disabled="true">آموزش های نویسندگی</a>
+                                        {% endif %}
+                                    </li>
+                                    <li class="nav-item">
+                                        {% if request.user.is_authenticated %}
+                                            <a class="nav-link {% if request.resolver_match.url_name == 'My_chat' %}active{% endif %}"
+                                               href="{% url 'My_chat' %}" tabindex="-1"
+                                               aria-disabled="true">چت روم</a>
+                                        {% else %}
+                                            <a class="nav-link {% if request.resolver_match.url_name == 'acoont:register' %}active{% endif %}"
+                                               href="{% url 'acoont:register' %}" tabindex="-1"
+                                               aria-disabled="true">چت روم</a>
+                                        {% endif %}
+                                    </li>
+                                    {#                                    <li class="nav-item">#}
+                                    {#                                        {% if request.user.is_authenticated %}#}
+                                    {#                                            <a class="nav-link" href="{% url 'acoont:logout' %}" tabindex="-1"#}
+                                    {#                                               aria-disabled="true">خارج شدن#}
+                                    {#                                            </a>#}
+                                    {#                                        {% else %}#}
+                                    {#                                            <a class="nav-link" href="{% url 'acoont:register' %}" tabindex="-1"#}
+                                    {#                                               aria-disabled="true">لاگین/ثبت#}
+                                    {#                                                نام</a>#}
+                                    {#                                        {% endif %}#}
+                                    {#                                    </li>#}
+
+                                </ul>
+                                {#                                <ul>#}
+                                {#                                    <li class="nav-item">#}
+                                {#                                        {% if request.user.is_authenticated %}#}
+                                {#                                            <a class="nav-link text-danger" href="{% url 'acoont:logout' %}"#}
+                                {#                                               tabindex="-1"#}
+                                {#                                               aria-disabled="true">خارج شدن#}
+                                {#                                            </a>#}
+                                {#                                        {% else %}#}
+                                {#                                            <a class="nav-link" href="{% url 'acoont:register' %}" tabindex="-1"#}
+                                {#                                               aria-disabled="true">لاگین/ثبت#}
+                                {#                                                نام</a>#}
+                                {#                                        {% endif %}#}
+                                {#                                    </li>#}
+                                {#                                </ul>#}
+                                <ul>
+                                    <li class="nav-item">
+
+                                        <div class="icon-box">
+                                            {% if request.user.is_authenticated %}
+                                                {% if request.user.img %}
+
+                                                    <a class="nav-link text-danger" href="{% url 'profView' %}"
+                                                       tabindex="-1"
+                                                       aria-disabled="true"> <i class="bi bi-pen-fill"></i> <img
+                                                            src='{{ request.user.img.url }}' alt=""
+                                                            style="width: 40px;height: 40px;border-radius: 50px">
+
+                                                    </a>
+                                                {% else %}
+                                                    <a class="nav-link text-danger" href="{% url 'profView' %}"
+                                                       tabindex="-1"
+                                                       aria-disabled="true"> <i class="bi bi-pen-fill"></i> <img
+                                                            src='https://ako.storage.iran.liara.space/userAvatar.png'
+                                                            alt=""
+                                                            style="width: 40px;height: 40px;border-radius: 50px">
+
+                                                    </a>
+
+                                                {% endif %}
+
+                                                </div>
+
+                                            {% else %}
+                                                {#                                                <a class=""#}
+                                                {#                                                   href="{% url 'acoont:register' %}" data-bs-toggle="modal"><i#}
+                                                {#                                                        class="fi-user me-2"></i>ورود به حساب کاربری</a>#}
+                                                <a class="nav-link" href="{% url 'acoont:login' %}" tabindex="-1"
+                                                   aria-disabled="true">لاگین/ثبت
+                                                    نام</a>
+
+                                            {% endif %}
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+                <div class="">
+                    <div class="">
+                        <div class="" style="margin-top: -50px;direction: ltr;">
+                            <img src="{% static 'img/21.png' %}" alt="" width="100px">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+{% block home %}
+
+
+
+
+
+
+
+
+
+
+{% endblock home %}
+
+<footer class="bg-white py-4 text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <ul class="d-flex justify-content-center social-bx">
+                    <li class="p-2 m-1"><a href="#"><i class="bi bi-instagram"></i></a></li>
+                    <li class="p-2 m-1"><a href="#"><i class="bi bi-twitter"></i></a></li>
+                    <li class="p-2 m-1"><a href="#"><i class="bi bi-facebook"></i></a></li>
+                </ul>
+            </div>
+            <div class="col-12">
+                <a referrerpolicy="origin" target="_blank"
+                   href="https://trustseal.enamad.ir/?id=340097&amp;Code=jnQ6PREPzEZ2pG55xrj0"><img
+                        referrerpolicy="origin"
+                        src="https://Trustseal.eNamad.ir/logo.aspx?id=340097&amp;Code=jnQ6PREPzEZ2pG55xrj0" alt=""
+                        style="cursor:pointer" id="jnQ6PREPzEZ2pG55xrj0"></a>
+                <script src="https://www.zarinpal.com/webservice/TrustCode" type="text/javascript"></script>
+                <p>akoroman</p>
+                <p class="mb-0">1401-1402&copy;تمامی حقوق این سایت متعلق به سایت akoroman میباشد</p>
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+<div class="scroll_top">
+         <span class="btn btn-info text-center text-light">
+         <i class="bi bi-arrow-up" style="font-size: 25px"></i>
+         </span>
+
+</div>
+
+<script src="{% static 'js/jQuery.js' %}"></script>
+<script src="{% static 'js/popper.js' %}"></script>
+<script src="{% static 'js/bootstrap.js' %}"></script>
+<script src="{% static 'js/owl.carousel.js' %}"></script>
+<script src="{% static 'js/index.js' %}"></script>
+<script src="https://seo90.ir/downloads/category/html-theme/"></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-L2W3M8F38X"></script>
+
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-L2W3M8F38X');
+</script>
+<!-- Google Tag Manager (noscript) -->
+<noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TWRLRJ7"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<script src="{% static 'prof/js/theme.min.js' %}"></script>
+<script src="{% static 'prof/vendor/persain-date/persian-datepicker.min.js' %}"></script>
+<script src="{% static 'vendor/persain-date/persian-date.js' %}"></script>
+<script src="{% static 'vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js' %}"></script>
+<script src="{% static 'vendor/simplebar/dist/simplebar.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'vendor/jquery-3.6.0.js' %}"></script>
+<!--Add the following script at the bottom of the web page (before </body></html>)-->
+<!--Add the following script at the bottom of the web page (before </body></html>)-->
+<script src="{% static 'prof/milad.js' %}" data-use-service-core defer></script>
+<div class="elfsight-app-880f9f8a-5d11-4d18-9539-6b1e3ac103c9" data-elfsight-app-lazy></div>
+<div class="elfsight-app-7b895ea6-c4c7-491e-8417-11d9f08d54e0" data-elfsight-app-lazy></div>
+</body>
+</html>

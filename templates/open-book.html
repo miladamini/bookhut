@@ -1,0 +1,40 @@
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OPEN BOOK</title>
+
+    <link rel="stylesheet" href="{% static 'part/assets/all.css' %}">
+    <link rel="stylesheet" href="{% static 'part/assets/css/open.css' %}">
+    <!-- script -->
+    <script src="{% static 'part/assets/js/open-book.js' %}" defer></script>
+    <!-- script -->
+
+
+</head>
+
+<body>
+
+
+<div class="book">
+
+
+    {% for foo in rom %}
+        <div class="page" id="page-3">
+            <div class="page-body">
+                <h4 class="page-title">{{ foo.name }}</h4>
+                <p class="page-text">
+                    {{ foo.body | safe }}
+                </p>
+            </div>
+            <div class="watermark"><p>bookhut.ir</p></div>
+        </div>
+    {% endfor %}
+
+
+</div>
+</body>
+
+</html>

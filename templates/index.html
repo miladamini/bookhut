@@ -1,0 +1,835 @@
+{% extends 'base.html' %}{% load static %}
+{% block title %}
+    <title>akoroman | آکو رمان</title>
+{% endblock title %}
+{% block home %}
+
+    <section class="my-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="slider-index shadow-sm">
+                        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img src="{% static 'img/slider/33.jpg' %}"
+                                         class="d-block w-100 rounded" alt="">
+                                </div>
+
+                                <div class="carousel-item">
+                                    <img src="{% static 'img/slider/44.jpg' %}"
+                                         class="d-block w-100 rounded" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="headbtn">
+                        <a href="https://rubika.ir/akoroman___ir" class="btn-link"><i class="bi bi-flower3"></i>روبیکای ما</a>
+                        <a href="https://t.me/akoromanir" class="btn-link"><i class="bi bi-telegram"></i>تلگرام ما</a>
+                    </div>
+{#                    <div class="btn-eshtrak">#}
+{#                        <a href="{% url 'eshtrak' %}" class="btneshtrak">خرید اشتراک ویژه</a>#}
+{#                    </div>#}
+                    <div class="row">
+                        <div class="col-sm-2">
+
+                        </div>
+                        <div class="col-sm-2">
+
+                        </div>
+                        {% if request.user.is_authenticated %}
+                            {% if request.user.eshtrak == True or Buy == True %}
+                                <div class="btn-eshtrak">
+                                    <a href="{% url 'profile' %}" class="btneshtrak">خرید های  شما</a>
+                                </div>
+
+                            {% else %}
+                                <div class="btn-eshtrak">
+                                    <a href="{% url 'eshtrak' %}" class="btneshtrak">خرید اشتراک ویژه</a>
+                                </div>
+                            {% endif %}
+                        {% else %}
+                            <div class="btn-eshtrak">
+                                <a href="{% url 'acoont:register' %}" class="btneshtrak">خرید اشتراک ویژه</a>
+                            </div>
+                        {% endif %}
+
+
+                        <div class="col-12">
+                            <div class="search-box">
+                                <form action="{% url 'serhc' %}" method="get"
+                                      class="position-relative w-100 mb-3 mb-md-0">
+                                    <input type="text" name="q" placeholder="جستجو کنید ..." class="pe-3">
+                                    <button class="position-absolute bg-dark"><i class="bi bi-search"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 top-slider">
+                    {% for foo in tab %}
+                        <div class="slider-item bg-white rounded p-4">
+
+                        <figure class="position-relative">
+                            <img src="{{ foo.img.url }}" alt="" class="w-100 h-100">
+                        </figure>
+                        <a href="{{ foo.link }}">
+                            <h6 class="overflow-hidden px-2">{{ foo.title |safe }}</h6>
+                        </a>
+                        <a href="{{ foo.link }}"
+                           class="d-block bg-dark p-3 mt-3 text-center text-light rounded">{{ foo.title_dokme }}</a>
+                    {% endfor %}
+                    </div>
+                </div>
+            </div>
+    </section>
+    <section class="my-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="title-box mb-3">
+                        <h1 class="m-0 p-0">پیشنهادی</h1>
+
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="top-slider owl-carousel owl-theme top-slider-wrap">
+
+                        {% for itme in post4 %}
+
+                            <div class="slider-item bg-white rounded p-4">
+                                <figure class="position-relative">
+                                    <a href="{% url 'postView'  itme.slug %}"> <img src="{{ itme.img.url }}" alt=""
+                                                                                    class="w-100 rounded"></a>
+                                    <figcaption class="tp_top position-absolute p-4">
+                                        <span>{{ itme.created }}</span>
+                                    </figcaption>
+                                    <figcaption class="tp_bottom position-absolute p-4">
+                                        <i class="bi bi-save bg-white d-inline-block text-center"></i>
+                                    </figcaption>
+                                </figure>
+                                <div class="item-cat">
+                                    <div class="d-flex">
+                                        <i class="bi bp3-icon-taxi"></i>
+                                        <span class="d-block p-2 text-info">بروز شده</span>
+                                    </div>
+                                </div>
+                                <a href="{% url 'postView'  itme.slug %}">
+                                    <h6 class="overflow-hidden px-2">{{ itme.title }}</h6>
+                                    <a href="{% url 'postView' itme.slug %}">
+                                        <button type="button" class="btn btn-primary m-3 btn-slide ">دیدن</button>
+                                    </a>
+
+                                </a>
+                            </div>
+
+                        {% endfor %}
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {% if cat1 != None %}
+        <section class="mb-5">
+            <div class="container">
+                <div class="shadow p-3" style="background-color: white;color: #8c206c">
+                    <div class="row justify-content-center">
+                        <div class="col-12 ">
+                            <div class="title-box mb-3">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <h1 class="m-0 p-0"><i class="bi bi-earbuds"></i>کتاب های صوتی</h1>
+                                    </div>
+
+                                    <div class="col">
+                                        <a href="{% url 'audio_book' %}">
+                                            <button class="col-md-4 ">
+                                                دیدن همه
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="top-slider owl-carousel owl-theme top-slider-wrap">
+                            {% for itme in cat1 %}
+                                <div class="slider-item bg-white rounded p-4">
+                                    <figure class="position-relative">
+                                        <a href="{% url 'PodcastView'  itme.slug %}"> <img src="{{ itme.img.url }}" alt=""
+                                                                                        class="w-100 rounded"></a>
+                                        <figcaption class="tp_top position-absolute p-4">
+                                            <span>{{ itme.created }}</span>
+                                        </figcaption>
+                                    </figure>
+                                    <div class="item-cat">
+                                        <div class="d-flex">
+                                            <i class="bi bp3-icon-taxi"></i>
+                                            <span class="d-block p-2 text-info">بروز شده</span>
+                                        </div>
+                                    </div>
+                                    <a href="{% url 'PodcastView'  itme.slug %}">
+                                        <h6 class="overflow-hidden px-2">{{ itme.title }}</h6>
+                                        <a href="{% url 'PodcastView' itme.slug %}">
+                                            <button type="button" class="btn btn-primary m-3 col-8  btn-slide">دیدن
+                                            </button>
+                                        </a>
+                                    </a>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    {% endif %}
+
+
+    {% if cat2 != None %}
+        <section class="mb-5">
+            <div class="container">
+                <div class="shadow p-3" style="background-color: white;color: #8c206c">
+                    <div class="row justify-content-center">
+                        <div class="col-12 ">
+                            <div class="title-box mb-3">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <h1 class="m-0 p-0"><i class="bi bi-earbuds"></i>پادکست ها</h1>
+                                    </div>
+
+                                    <div class="col">
+                                        <a href="{% url 'podcastt' %}">
+                                            <button class="col-md-4 ">
+                                                دیدن همه
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="top-slider owl-carousel owl-theme top-slider-wrap">
+                            {% for itme in cat2 %}
+                                <div class="slider-item bg-white rounded p-4">
+                                    <figure class="position-relative">
+                                        <a href="{% url 'PodcastView'  itme.slug %}"> <img src="{{ itme.img.url }}" alt=""
+                                                                                        class="w-100 rounded"></a>
+                                        <figcaption class="tp_top position-absolute p-4">
+                                            <span>{{ itme.created }}</span>
+                                        </figcaption>
+                                    </figure>
+                                    <div class="item-cat">
+                                        <div class="d-flex">
+                                            <i class="bi bp3-icon-taxi"></i>
+                                            <span class="d-block p-2 text-info">بروز شده</span>
+                                        </div>
+                                    </div>
+                                    <a href="{% url 'PodcastView'  itme.slug %}">
+                                        <h6 class="overflow-hidden px-2">{{ itme.title }}</h6>
+                                        <a href="{% url 'PodcastView' itme.slug %}">
+                                            <button type="button" class="btn btn-primary m-3 col-8  btn-slide">دیدن
+                                            </button>
+                                        </a>
+                                    </a>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    {% endif %}
+
+    {% if cat3 != None %}
+        <section class="mb-5">
+            <div class="container">
+                <div class="shadow p-3" style="background-color: white;color: #8c206c">
+                    <div class="row justify-content-center">
+                        <div class="col-12 ">
+                            <div class="title-box mb-3">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <h1 class="m-0 p-0"><i class="bi bi-earbuds"></i> رمان های صوتی</h1>
+                                    </div>
+
+                                    <div class="col">
+                                        <a href="{% url 'Audio_novel' %}">
+                                            <button class="col-md-4 ">
+                                                دیدن همه
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="top-slider owl-carousel owl-theme top-slider-wrap">
+                            {% for itme in cat3 %}
+                                <div class="slider-item bg-white rounded p-4">
+                                    <figure class="position-relative">
+                                        <a href="{% url 'PodcastView'  itme.slug %}"> <img src="{{ itme.img.url }}" alt=""
+                                                                                        class="w-100 rounded"></a>
+                                        <figcaption class="tp_top position-absolute p-4">
+                                            <span>{{ itme.created }}</span>
+                                        </figcaption>
+                                    </figure>
+                                    <div class="item-cat">
+                                        <div class="d-flex">
+                                            <i class="bi bp3-icon-taxi"></i>
+                                            <span class="d-block p-2 text-info">بروز شده</span>
+                                        </div>
+                                    </div>
+                                    <a href="{% url 'PodcastView'  itme.slug %}">
+                                        <h6 class="overflow-hidden px-2">{{ itme.title }}</h6>
+                                        <a href="{% url 'PodcastView' itme.slug %}">
+                                            <button type="button" class="btn btn-primary m-3 col-8  btn-slide">دیدن
+                                            </button>
+                                        </a>
+                                    </a>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    {% endif %}
+
+
+    {% if zanr1 != None %}
+        <section class="mb-5">
+            <div class="container">
+                <div class="shadow p-3" style="background-color: white;color: #8c206c">
+                    <div class="row justify-content-center">
+                        <div class="col-12 ">
+                            <div class="title-box mb-3">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <h1 class="m-0 p-0"><i class="bi-journal-check"></i> رمان های عاشقانه</h1>
+                                    </div>
+
+                                    <div class="col">
+                                        <a href="{% url 'Correction1' %}">
+                                            <button class="col-md-4 ">
+                                                دیدن همه
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="top-slider owl-carousel owl-theme top-slider-wrap">
+                            {% for itme in zanr1 %}
+                                <div class="slider-item bg-white rounded p-4">
+                                    <figure class="position-relative">
+                                        <a href="{% url 'postView'  itme.slug %}"> <img src="{{ itme.img.url }}" alt=""
+                                                                                        class="w-100 rounded"></a>
+                                        <figcaption class="tp_top position-absolute p-4">
+                                            <span>{{ itme.created }}</span>
+                                        </figcaption>
+                                    </figure>
+                                    <div class="item-cat">
+                                        <div class="d-flex">
+                                            <i class="bi bp3-icon-taxi"></i>
+                                            <span class="d-block p-2 text-info">بروز شده</span>
+                                        </div>
+                                    </div>
+                                    <a href="{% url 'postView'  itme.slug %}">
+                                        <h6 class="overflow-hidden px-2">{{ itme.title }}</h6>
+                                        <a href="{% url 'postView' itme.slug %}">
+                                            <button type="button" class="btn btn-primary m-3 col-8  btn-slide">دیدن
+                                            </button>
+                                        </a>
+                                    </a>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    {% endif %}
+
+
+    {% if zanr8 != None %}
+        <section class="mb-5">
+            <div class="container">
+                <div class="shadow p-3" style="background-color: white;color: #8c206c">
+                    <div class="row justify-content-center">
+                        <div class="col-12 ">
+                            <div class="title-box mb-3">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <h1 class="m-0 p-0"><i class="bi-journal-check"></i> رمان های BDSM</h1>
+                                    </div>
+
+                                    <div class="col">
+                                        <a href="{% url 'Correction8' %}">
+                                            <button class="col-md-4 ">
+                                                دیدن همه
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="top-slider owl-carousel owl-theme top-slider-wrap">
+                            {% for itme in zanr8 %}
+                                <div class="slider-item bg-white rounded p-4">
+                                    <figure class="position-relative">
+                                        <a href="{% url 'postView'  itme.slug %}"> <img src="{{ itme.img.url }}" alt=""
+                                                                                        class="w-100 rounded"></a>
+                                        <figcaption class="tp_top position-absolute p-4">
+                                            <span>{{ itme.created }}</span>
+                                        </figcaption>
+                                    </figure>
+                                    <div class="item-cat">
+                                        <div class="d-flex">
+                                            <i class="bi bp3-icon-taxi"></i>
+                                            <span class="d-block p-2 text-info">بروز شده</span>
+                                        </div>
+                                    </div>
+                                    <a href="{% url 'postView'  itme.slug %}">
+                                        <h6 class="overflow-hidden px-2">{{ itme.title }}</h6>
+                                        <a href="{% url 'postView' itme.slug %}">
+                                            <button type="button" class="btn btn-primary m-3 col-8  btn-slide">دیدن
+                                            </button>
+                                        </a>
+                                    </a>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    {% endif %}
+
+
+    {% if zanr2 != None %}
+        <section class="mb-5">
+            <div class="container">
+                <div class="shadow p-3" style="background-color: white;color: #8c206c">
+                    <div class="row justify-content-center">
+                        <div class="col-12 ">
+                            <div class="title-box mb-3">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <h1 class="m-0 p-0"><i class="bi-journal-check"></i> رمان های ترسناک</h1>
+                                    </div>
+
+                                    <div class="col">
+                                        <a href="{% url 'Correction2' %}">
+                                            <button class="col-md-4 ">
+                                                دیدن همه
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="top-slider owl-carousel owl-theme top-slider-wrap">
+                            {% for itme in zanr2 %}
+                                <div class="slider-item bg-white rounded p-4">
+                                    <figure class="position-relative">
+                                        <a href="{% url 'postView'  itme.slug %}"> <img src="{{ itme.img.url }}" alt=""
+                                                                                        class="w-100 rounded"></a>
+                                        <figcaption class="tp_top position-absolute p-4">
+                                            <span>{{ itme.created }}</span>
+                                        </figcaption>
+                                    </figure>
+                                    <div class="item-cat">
+                                        <div class="d-flex">
+                                            <i class="bi bp3-icon-taxi"></i>
+                                            <span class="d-block p-2 text-info">بروز شده</span>
+                                        </div>
+                                    </div>
+                                    <a href="{% url 'postView'  itme.slug %}">
+                                        <h6 class="overflow-hidden px-2">{{ itme.title }}</h6>
+                                        <a href="{% url 'postView' itme.slug %}">
+                                            <button type="button" class="btn btn-primary m-3 col-8  btn-slide">دیدن
+                                            </button>
+                                        </a>
+                                    </a>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    {% endif %}
+
+
+    {% if zanr3 != None %}
+        <section class="mb-5">
+            <div class="container">
+                <div class="shadow p-3" style="background-color: white;color: #8c206c">
+                    <div class="row justify-content-center">
+                        <div class="col-12 ">
+                            <div class="title-box mb-3">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <h1 class="m-0 p-0"><i class="bi-journal-check"></i> رمان های فانتزی</h1>
+                                    </div>
+
+                                    <div class="col">
+                                        <a href="{% url 'Correction3' %}">
+                                            <button class="col-md-4 ">
+                                                دیدن همه
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="top-slider owl-carousel owl-theme top-slider-wrap">
+                            {% for itme in zanr3 %}
+                                <div class="slider-item bg-white rounded p-4">
+                                    <figure class="position-relative">
+                                        <a href="{% url 'postView'  itme.slug %}"> <img src="{{ itme.img.url }}" alt=""
+                                                                                        class="w-100 rounded"></a>
+                                        <figcaption class="tp_top position-absolute p-4">
+                                            <span>{{ itme.created }}</span>
+                                        </figcaption>
+                                    </figure>
+                                    <div class="item-cat">
+                                        <div class="d-flex">
+                                            <i class="bi bp3-icon-taxi"></i>
+                                            <span class="d-block p-2 text-info">بروز شده</span>
+                                        </div>
+                                    </div>
+                                    <a href="{% url 'postView'  itme.slug %}">
+                                        <h6 class="overflow-hidden px-2">{{ itme.title }}</h6>
+                                        <a href="{% url 'postView' itme.slug %}">
+                                            <button type="button" class="btn btn-primary m-3 col-8  btn-slide">دیدن
+                                            </button>
+                                        </a>
+                                    </a>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    {% endif %}
+
+
+
+    {% if zanr4 != None %}
+        <section class="mb-5">
+            <div class="container">
+                <div class="shadow p-3" style="background-color: white;color: #8c206c">
+                    <div class="row justify-content-center">
+                        <div class="col-12 ">
+                            <div class="title-box mb-3">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <h1 class="m-0 p-0"><i class="bi-journal-check"></i> رمان های کوتاه</h1>
+                                    </div>
+
+                                    <div class="col">
+                                        <a href="{% url 'Correction4' %}">
+                                            <button class="col-md-4 ">
+                                                دیدن همه
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="top-slider owl-carousel owl-theme top-slider-wrap">
+                            {% for itme in zanr4 %}
+                                <div class="slider-item bg-white rounded p-4">
+                                    <figure class="position-relative">
+                                        <a href="{% url 'postView'  itme.slug %}"> <img src="{{ itme.img.url }}" alt=""
+                                                                                        class="w-100 rounded"></a>
+                                        <figcaption class="tp_top position-absolute p-4">
+                                            <span>{{ itme.created }}</span>
+                                        </figcaption>
+                                    </figure>
+                                    <div class="item-cat">
+                                        <div class="d-flex">
+                                            <i class="bi bp3-icon-taxi"></i>
+                                            <span class="d-block p-2 text-info">بروز شده</span>
+                                        </div>
+                                    </div>
+                                    <a href="{% url 'postView'  itme.slug %}">
+                                        <h6 class="overflow-hidden px-2">{{ itme.title }}</h6>
+                                        <a href="{% url 'postView' itme.slug %}">
+                                            <button type="button" class="btn btn-primary m-3 col-8  btn-slide">دیدن
+                                            </button>
+                                        </a>
+                                    </a>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    {% endif %}
+
+
+    {% if zanr5 != None %}
+        <section class="mb-5">
+            <div class="container">
+                <div class="shadow p-3" style="background-color: white;color: #8c206c">
+                    <div class="row justify-content-center">
+                        <div class="col-12 ">
+                            <div class="title-box mb-3">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <h1 class="m-0 p-0"><i class="bi-journal-check"></i> رمان های اجتماعی</h1>
+                                    </div>
+
+                                    <div class="col">
+                                        <a href="{% url 'Correction5' %}">
+                                            <button class="col-md-4 ">
+                                                دیدن همه
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="top-slider owl-carousel owl-theme top-slider-wrap">
+                            {% for itme in zanr5 %}
+                                <div class="slider-item bg-white rounded p-4">
+                                    <figure class="position-relative">
+                                        <a href="{% url 'postView'  itme.slug %}"> <img src="{{ itme.img.url }}" alt=""
+                                                                                        class="w-100 rounded"></a>
+                                        <figcaption class="tp_top position-absolute p-4">
+                                            <span>{{ itme.created }}</span>
+                                        </figcaption>
+                                    </figure>
+                                    <div class="item-cat">
+                                        <div class="d-flex">
+                                            <i class="bi bp3-icon-taxi"></i>
+                                            <span class="d-block p-2 text-info">بروز شده</span>
+                                        </div>
+                                    </div>
+                                    <a href="{% url 'postView'  itme.slug %}">
+                                        <h6 class="overflow-hidden px-2">{{ itme.title }}</h6>
+                                        <a href="{% url 'postView' itme.slug %}">
+                                            <button type="button" class="btn btn-primary m-3 col-8  btn-slide">دیدن
+                                            </button>
+                                        </a>
+                                    </a>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    {% endif %}
+
+
+    {% if zanr6 != None %}
+        <section class="mb-5">
+            <div class="container">
+                <div class="shadow p-3" style="background-color: white;color: #8c206c">
+                    <div class="row justify-content-center">
+                        <div class="col-12 ">
+                            <div class="title-box mb-3">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <h1 class="m-0 p-0"><i class="bi-journal-check"></i> رمان های طنز</h1>
+                                    </div>
+
+                                    <div class="col">
+                                        <a href="{% url 'Correction6' %}">
+                                            <button class="col-md-4 ">
+                                                دیدن همه
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="top-slider owl-carousel owl-theme top-slider-wrap">
+                            {% for itme in zanr6 %}
+                                <div class="slider-item bg-white rounded p-4">
+                                    <figure class="position-relative">
+                                        <a href="{% url 'postView'  itme.slug %}"> <img src="{{ itme.img.url }}" alt=""
+                                                                                        class="w-100 rounded"></a>
+                                        <figcaption class="tp_top position-absolute p-4">
+                                            <span>{{ itme.created }}</span>
+                                        </figcaption>
+                                    </figure>
+                                    <div class="item-cat">
+                                        <div class="d-flex">
+                                            <i class="bi bp3-icon-taxi"></i>
+                                            <span class="d-block p-2 text-info">بروز شده</span>
+                                        </div>
+                                    </div>
+                                    <a href="{% url 'postView'  itme.slug %}">
+                                        <h6 class="overflow-hidden px-2">{{ itme.title }}</h6>
+                                        <a href="{% url 'postView' itme.slug %}">
+                                            <button type="button" class="btn btn-primary m-3 col-8  btn-slide">دیدن
+                                            </button>
+                                        </a>
+                                    </a>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    {% endif %}
+
+
+
+    {% if zanr7 != None %}
+        <section class="mb-5">
+            <div class="container">
+                <div class="shadow p-3" style="background-color: white;color: #8c206c">
+                    <div class="row justify-content-center">
+                        <div class="col-12 ">
+                            <div class="title-box mb-3">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <h1 class="m-0 p-0"><i class="bi-journal-check"></i> رمان های پلیسی</h1>
+                                    </div>
+
+                                    <div class="col">
+                                        <a href="{% url 'Correction7' %}">
+                                            <button class="col-md-4 ">
+                                                دیدن همه
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="top-slider owl-carousel owl-theme top-slider-wrap">
+                            {% for itme in zanr7 %}
+                                <div class="slider-item bg-white rounded p-4">
+                                    <figure class="position-relative">
+                                        <a href="{% url 'postView'  itme.slug %}"> <img src="{{ itme.img.url }}" alt=""
+                                                                                        class="w-100 rounded"></a>
+                                        <figcaption class="tp_top position-absolute p-4">
+                                            <span>{{ itme.created }}</span>
+                                        </figcaption>
+                                    </figure>
+                                    <div class="item-cat">
+                                        <div class="d-flex">
+                                            <i class="bi bp3-icon-taxi"></i>
+                                            <span class="d-block p-2 text-info">بروز شده</span>
+                                        </div>
+                                    </div>
+                                    <a href="{% url 'postView'  itme.slug %}">
+                                        <h6 class="overflow-hidden px-2">{{ itme.title }}</h6>
+                                        <a href="{% url 'postView' itme.slug %}">
+                                            <button type="button" class="btn btn-primary m-3 col-8  btn-slide">دیدن
+                                            </button>
+                                        </a>
+                                    </a>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    {% endif %}
+
+
+    <section class="mb-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    <div class="title-box mb-3">
+                        <h1 class="m-0 p-0">قدیمی ترین</h1>
+                    </div>
+                </div>
+                {% for i in post3 %}
+                    <div class="col-sm-6 col-md-6 col-lg-4 my-3">
+                        <div class="blg-wrap bg-white pb-3">
+                            <figure class="position-relative">
+                                <a href="{% url 'postView'  i.slug %}"><img src="{{ i.img.url }}" alt=""
+                                                                            class="w-100"></a>
+                                <figcaption class="position-absolute w-100 h-100"><span
+                                        class="blg-dt">{{ i.created }}</span>
+                                </figcaption>
+                            </figure class="position-relative">
+                            <div class="px-3 py-1 text-start">
+                                <span class="blg-cat-name d-inline-block bg-info py-1 px-2">مطالب روز</span>
+                            </div>
+                            <a href="{% url 'postView'  i.slug %}">
+                                <h4 class="blg-title p-3 mx-5 text-dark border-bottom overflow-hidden">{{ i.title }}</h4>
+                            </a>
+                            <div class="post-type d-flex p-3 pb-0">
+                                <i class="bi bi-card-text d-inline-block text-info text-center"></i>
+                                <span>رمان</span>
+                            </div>
+                            <div class="p-3 ">
+                                {{ i.body | safe }}
+                            </div>
+
+
+                        </div>
+                        <a href="{% url 'postView' i.slug %}">
+                            <button type="button" class="btn btn-primary m-3  btn-slide">دیدن</button>
+                        </a>
+                    </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </section>
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-L2W3M8F38X"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-L2W3M8F38X');
+</script>
+
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TWRLRJ7"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+{% endblock home %}

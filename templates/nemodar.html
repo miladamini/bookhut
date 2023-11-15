@@ -1,0 +1,130 @@
+{% extends 'base.html' %}{% load static %}<!DOCTYPE html>
+<html lang="en">
+
+{% block home %}
+<div>
+    <canvas id="myChart"></canvas>
+</div>
+<br>
+
+<div>
+    <canvas id="milad"></canvas>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    const ctx = document.getElementById('myChart');
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: [{% for data in post %}
+                '{{ data }}',
+            {% endfor %}],
+            datasets: [{
+                label: '# of Votes',
+                data: [{% for data in post %}
+                    {{ data.kaymat }},
+                {% endfor %}],
+                backgroundColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(25,99,132,1)',
+                    'rgba(112,992,132,1)',
+                    'rgba(255,992,12,1)',
+                    'rgba(25,99,12,1)',
+                    'rgba(25,9,132,1)',
+                ],
+                borderWidth: 2
+            }]
+        },
+
+        options: {
+            plugins: {
+                colors: {
+                    enabled: true
+                }
+            },
+            plugins: {
+                legend: {
+                    position: 'right',
+                },
+                title: {
+                    display: true,
+                    text: 'نمودار وضعیت کلبه کتاب'
+                }
+            },
+            elements: {
+                bar: {
+                    borderWidth: 2,
+                }
+            },
+
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+
+</script>
+<script>
+    const milad = document.getElementById('milad');
+
+    new Chart(milad, {
+        type: 'bar',
+        data: {
+            labels: [{% for data in b %}
+                '{{ data }}',
+            {% endfor %}],
+            datasets: [{
+                label: '# of Votes',
+                data: [{% for data in b %}
+                    {{ data.many }},
+                {% endfor %}],
+                backgroundColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(25,99,132,1)',
+                    'rgba(112,992,132,1)',
+                    'rgba(255,992,12,1)',
+                    'rgba(25,99,12,1)',
+                    'rgba(25,9,132,1)',
+                ],
+                borderWidth: 2
+            }]
+        },
+
+        options: {
+            plugins: {
+                colors: {
+                    enabled: true
+                }
+            },
+            plugins: {
+                legend: {
+                    position: 'right',
+                },
+                title: {
+                    display: true,
+                    text: 'نمودار وضعیت کلبه کتاب'
+                }
+            },
+            elements: {
+                bar: {
+                    borderWidth: 2,
+                }
+            },
+
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+
+</script>
+{% endblock home %}

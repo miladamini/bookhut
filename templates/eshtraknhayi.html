@@ -1,0 +1,37 @@
+{% extends 'base.html' %}{% load static %}
+{% block title %}
+    <title>خرید اشتراک</title>
+{% endblock title %}
+{% block home %}
+    <section class="mb-5">
+        <div class="container">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-12 pt-5 ">
+                </div>
+                <div class="text-center">
+                    <div class="not-found bg-white rounded border p-3 pb-5">
+                        <h3>خرید اشتراک ویژه</h3>
+
+                        <div class="row justify-content-center align-items-center">
+                            <h4 class="p-3">خرید اشتراک یک روزه 5 هزار تومان <a href="">
+                                <button type="submit">خرید</button>
+                            </a></h4>
+                              <h4 class="p-3">خرید اشتراک یک هفته30 هزار تومان <a href="">
+                                <button type="submit">خرید</button>
+                            </a></h4>
+                              <h4 class="p-3">خرید اشتراک یک ماهه 100 هزار تومان <a href="">
+                                <button type="submit">خرید</button>
+                            </a></h4>
+                              <h4 class="p-3">خرید اشتراک سه ماه 240 هزار تومان <a href="">
+                                <button type="submit">خرید</button>
+                            </a></h4>
+
+                        </div>
+
+                        <span class="d-block my-3">بازگشت به <a href="{% url 'homeView' %}">صفحه اصلی</a> سایت</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

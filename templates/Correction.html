@@ -1,0 +1,122 @@
+{% extends 'base.html' %}{% load static %}
+{% block title %}
+    <title>ژانر ها</title>
+{% endblock title %}
+{% block home %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb-wrap p-3 bg-white my-4 rounded">
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="mb-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    <div class="title-box mb-3">
+                    </div>
+                </div>
+                {% for i in zan1 %}
+                    <div class="col-sm-6 col-md-6 col-lg-4 my-3">
+                        <div class="blg-wrap bg-white pb-3">
+                            <figure class="position-relative">
+                                <a href="{% url 'postView'  i.slug %}"><img src="{{ i.img.url }}" alt=""
+                                                                            class="w-100"></a>
+                                <figcaption class="position-absolute w-100 h-100"><span
+                                        class="blg-dt">{{ i.created }}</span>
+                                </figcaption>
+                            </figure class="position-relative">
+                            <div class="px-3 py-1 text-start">
+                                <span class="blg-cat-name d-inline-block bg-info py-1 px-2">مطالب روز</span>
+                            </div>
+                            <a href="{% url 'postView'  i.slug %}">
+                                <h4 class="blg-title p-3 mx-5 text-dark border-bottom overflow-hidden">{{ i.title }}</h4>
+                            </a>
+                            <div class="post-type d-flex p-3 pb-0">
+                            </div>
+                            <p class="p-4 overflow-hidden"> {{ i.body | safe }} </p>
+
+
+                        </div>
+                        <a href="{% url 'postView' i.slug %}">
+                            <button type="button" class="btn btn-primary m-3 btn-slide">دیدن</button>
+                        </a>
+                    </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </section>
+    
+    
+    <section class="mb-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    <div class="title-box mb-3">
+                    </div>
+                </div>
+                {% for i in zan %}
+                    <div class="col-sm-6 col-md-6 col-lg-4 my-3">
+                        <div class="blg-wrap bg-white pb-3">
+                            <figure class="position-relative">
+                                <a href="{% url 'PodcastView'  i.slug %}"><img src="{{ i.img.url }}" alt=""
+                                                                            class="w-100"></a>
+                                <figcaption class="position-absolute w-100 h-100"><span
+                                        class="blg-dt">{{ i.created }}</span>
+                                </figcaption>
+                            </figure class="position-relative">
+                            <div class="px-3 py-1 text-start">
+                                <span class="blg-cat-name d-inline-block bg-info py-1 px-2">مطالب روز</span>
+                            </div>
+                            <a href="{% url 'PodcastView'  i.slug %}">
+                                <h4 class="blg-title p-3 mx-5 text-dark border-bottom overflow-hidden">{{ i.title }}</h4>
+                            </a>
+                            <div class="post-type d-flex p-3 pb-0">
+                            </div>
+                            <p class="p-4 overflow-hidden"> {{ i.body | safe }} </p>
+
+
+                        </div>
+                        <a href="{% url 'PodcastView' i.slug %}">
+                            <button type="button" class="btn btn-primary m-3 btn-slide">دیدن</button>
+                        </a>
+                    </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </section>
+     <div class="container">
+        <div class="row">
+            <div class="col-12 mb-5">
+                <div class="pagination-wrap">
+                    {% if zan1.has_other_pages %}
+                        <ul class="d-flex justify-content-center">
+                            {% if zan1.has_previous %}
+                                <li><a href="?page={{ zan1.previous_page_number }}"><<</a></li>
+                            {% endif %}
+
+                            {% for i in zan1.paginator.page_range %}
+                                {% if zan1.number == i %}
+                                    <li class="active"><a href="?page={{ i }}">{{ i }}</a></li>
+                                {% else %}
+
+                                {% endif %}
+                            {% endfor %}
+
+                            {% if zan1.has_next %}
+                                <li><a href="?page={{ zan1.next_page_number }}">>></a></li>
+                            {% endif %}
+                        </ul>
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock home %}

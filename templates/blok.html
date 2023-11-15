@@ -1,0 +1,69 @@
+{% extends 'base.html' %}{% load static %}
+{% block home %}
+    <section class="mb-5">
+        <div class="container">
+            <div class="row justify-content-center align-items-center">
+                <div class="">
+                    <div class="title-box mb-2">
+
+                    </div>
+                </div>
+                <div class='text-center'>
+                    <div class="not-found bg-white rounded border p-3 pb-5">
+                        <p>{{ malek.body |safe }}</p>
+                        <br>
+                        <div class="pt-5 pb-5">
+
+                            <h4>{{ malek.title }}</h4>
+                            <br>
+                            <h4>{{ malek.name }}</h4>
+                            <img class="imgmilad" src="{{ malek.img.url }}" alt="">
+                        </div>
+
+
+                        <div class="miladbox">
+                            <H4 class="p-3" style="font-size: 30px; font-weight: bold;">مدیران </H4>
+                            {% for item in karbar %}
+                                <div class="miladdiv">
+                                    <img src="{{ item.img.url }}"
+                                         alt=""
+                                         style="border-radius: 20%; box-shadow: rgba(0, 0, 0, 0.2) 0px 60px 40px -7px;">
+                                    <h4 class="p-3">{{ item.title }}</h4>
+                                    <h6 class="" style="font-size: 20px">{{ item.body }}</h6>
+                                    <hr>
+                                </div>
+                            {% endfor %}
+
+                        </div>
+
+                        <div class="search-box px-0 px-md-5 mt-5">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L2W3M8F38X"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'G-L2W3M8F38X');
+    </script>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TWRLRJ7"
+                height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+
+{% endblock home %}

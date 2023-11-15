@@ -1,0 +1,27 @@
+{% extends 'base.html' %}{% load static %}
+{% block home %}
+      <section class="mb-5">
+         <div class="container">
+            <div class="row justify-content-center align-items-center">
+               <div class="col-12">
+                  <div class="title-box mb-2">
+                     <p class="m-0 p-0"><span class="text-primary">خطا</span></p>
+                     <span class="d-block"><a href="{% url 'PodcastView' %}">بازگشت  </a> <i class="bi bi-arrow-left position-relative"></i></span>
+                  </div>
+               </div>
+               <div class="col-md-8 text-center">
+                  <div class="not-found bg-white rounded border p-3 pb-5">
+                     <span class="my-3 my-md-4">
+                    متن نادرستی استفاده کرده اید لطفا متن یا نام خود را به دستی وارد کیند
+                     </span>
+                     <p class="m-0">از ایموجی ها نمیتوانید استفاده کنید</p>
+                     <span class="d-block my-3">بازگشت به <a href="{% url 'PodcastView' %}"> بازگشت</a> سایت</span>
+                     <div class="search-box px-0 px-md-5 mt-5">
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+
+{% endblock %}

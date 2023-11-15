@@ -1,0 +1,288 @@
+{% extends 'base.html' %}{% load static %}
+{% block title %}
+    <title>{{ pod.title }}</title>
+{% endblock title %}
+{% block home %}
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb-wrap p-3 bg-white my-4 rounded">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="mb-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9">
+                    <article>
+                        <div class="section-top-single bg-white rounded p-3">
+                            <div class="row">
+                                <div class="col-md-7">
+                                    <figure>
+                                        <img src="{{ pod.img.url }}" alt="{{ post.alt }}" class="img-thumbnail d-table mx-auto">
+                                    </figure>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="border rounded p-3 mb-3">
+                                        <h1 class="border-bottom">{{ pod.title }}</h1>
+                                        <ul class="detail-single d-flex">
+                                            <li><i class="p-1 bi bi-clock"></i>تاریخ ایجاد:</li>
+                                            <li><i class="p-1"></i>&nbsp;{{ pod.created }}</li>
+                                        </ul>
+                                        <ul class="detail-single d-flex">
+                                            <li><i class="p-1 bi-clock"></i>تاریخ بروزرسانی:</li>
+                                            <li><i class="p-1"></i>&nbsp;{{ pod.apdated }}</li>
+                                        </ul>
+                                        <div class="text-start">
+                                            <span><i class="bi bi-chat"></i> {{ po }} دیدگاه</span>
+                                        </div>
+                                        <div class="text-start">
+                                            <span><i class="bi bi-eye"></i> {{ podcast.view }} بازدید </span>
+                                        </div>
+
+                                    </div>
+                                    <div class="border rounded p-3 single-excerpt-box">
+                                        <span class="d-block py-2 text-info">خلاصه مطلب</span>
+                                        <p class="m-0">{{ pod.body }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-3">
+                            {% for foo in tab %}
+                                <div class="bg-white rounded p-4">
+                                    <figure style="text-align:center" class="position-relative">
+                                        <img src="{{ foo.img.url }}" alt="{{ post.alt }}">
+                                    </figure>
+                                    <a href="{{ foo.link }}">
+                                        <h6 class="overflow-hidden text-center px-2">{{ foo.title }}</h6>
+                                    </a>
+                                    <a href="{{ foo.link }}"
+                                       class="d-block bg-dark p-3 mt-3 text-center text-light rounded">{{ foo.title_dokme }}</a>
+                                </div>
+                            {% endfor %}
+
+                        </div>
+                        <div class="content-single rounded bg-white p-3 mt-3">
+                            <p>{{ pod.body | safe }}</p>
+                            <audio controls controlslist="nodownload" 
+                                   class="col-sm-4 col-sm-offset-4 embed-responsive embed-responsive-4by3">
+                                <source src="{{ pod.link_p }}" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                            </audio>
+                            {% if pod.eshtrak == True %}
+                                {% if request.user.eshtrak == False %}
+                                    <a href="{% url 'eshtrak' %}"
+                                       class="bg-warning rounded d-block p-3 shadow-sm text-center my-1 my-md-3  text-dark"><i
+                                            class="bi bi-gem"></i> خرید عضویت ویژه</a>
+                                {% elif request.user.is_authenticated %}
+                                    <a href="{{ pod.link_d }}">
+                                        <button type="button" class="btn btn-primary d-block">دانلود</button>
+                                    </a>
+                                {% else %}
+                                    <a href="{% url 'acoont:register' %}">
+                                        <button type="button" class="btn btn-primary d-block">دانلود</button>
+                                    </a>
+                                {% endif %}
+                            {% else %}
+                                {% if request.user.is_authenticated %}
+                                    <a href="{{ pod.link_d }}">
+                                        <button type="button" class="btn btn-primary d-block">دانلود</button>
+                                    </a>
+                                {% else %}
+                                    <a href="{% url 'acoont:register' %}">
+                                        <button type="button" class="btn btn-primary d-block">دانلود</button>
+                                    </a>
+                                {% endif %}
+                            {% endif %}
+
+
+
+
+
+
+
+                            {% for mm in music %}
+                                <div class="content-single rounded bg-white  mt-3">
+                                <p>{{ mm.body | safe }}</p>
+                               
+                                {% if pod.eshtrak == True %}
+                                    {% if request.user.eshtrak == False %}
+                                        <a href="{% url 'homeView' %}"
+                                           class="bg-warning rounded d-block p-3 shadow-sm text-center my-1 my-md-3  text-dark"><i
+                                                class="bi bi-gem"></i> خرید عضویت ویژه</a>
+                                    {% elif request.user.is_authenticated %}
+                                        <audio controls class="col-sm-4 col-sm-offset-4 embed-responsive embed-responsive-4by3">
+                                                  <source src="{{ mm.link }}" type="audio/mpeg">
+                                                  Your browser does not support the audio element.
+                                        </audio> 
+                                        <a href="{{ mm.link }}">
+                                            <button type="button" class="btn btn-primary d-block">دانلود</button>
+                                        </a>
+                                    {% else %}
+                                        <a href="{% url 'acoont:register' %}">
+                                            <button type="button" class="btn btn-primary d-block">دانلود</button>
+                                        </a>
+                                    {% endif %}
+                                {% else %}
+                                    {% if request.user.is_authenticated %}
+                                        <a href="{{ mm.link }}">
+                                            <button type="button" class="btn btn-primary d-block">دانلود</button>
+                                        </a>
+                                    {% else %}
+                                        <a href="{% url 'acoont:register' %}">
+                                            <button type="button" class="btn btn-primary d-block">دانلود</button>
+                                        </a>
+                                    {% endif %}
+                                {% endif %}
+                            {% endfor %}
+
+
+
+
+
+
+
+
+                            <div class="mt-2 ">
+                                {% if pod.eshtrak == True %}
+                                    <p class="alert alert-warning d-inline-block p-2">این پست فقط اعضای ویژه به آن
+                                        دسترسی
+                                        دارند</p>
+                                    {% if request.user.is_authenticated %}
+                                        {% if request.user.eshtrak == False %}
+                                            <p class="alert alert-danger d-inline-block  p-2 mt-2">شما عضو ویژه
+                                                نیستید😓</p>
+                                        {% else %}
+                                            <p class="alert alert-info d-inline-block  p-2 mt-2">شما عضو ویژه
+                                                هستید😍</p>
+                                        {% endif %}
+                                    {% endif %}
+
+                                {% endif %}
+                            </div>
+
+                            </div>
+                            <div class="rounded bg-white p-3 mt-3">
+                                <div class="comments-box">
+
+                                    {% for comman in pod.comments.all %}
+                                        <div class="cm-parent rounded bg-light p-3 mb-3">
+                                            {% if comman.parent == None %}
+
+                                                <div class="row">
+                                                    <div class="col-1">
+                                                        <img src="{{ comman.user.img.url }}" alt="">
+                                                    </div>
+                                                    <div class="col-11">
+                                                        <p><span
+                                                                class="d-inline-block text-primary ps-2">{{ comman.name }}:</span>{{ comman.text }}
+                                                        </p>
+                                                        <button onclick="set({{ comman.id }})" class="btn btn-primary">
+                                                            replay
+                                                        </button>
+                                                        <div class="text-start">
+                                               <span class="d-inline-block mt-2 py-1 text-info px-2">
+                                               <i class="bi bi-calendar2-event"></i>{{ comman.created_ad }}
+                                               </span>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                </div>
+
+                                                {% for replay in comman.riplay.all %}
+                                                    <div class="cm-chlid me-5 border border-dark-50 rounded p-3 mb-3">
+                                                        <div class="row">
+                                                            <div class="col-1">
+                                                                <img src="{{ comman.user.img.url }}" alt="">
+                                                            </div>
+                                                            <div class="col-11">
+                                                                <p><span
+                                                                        class="d-inline-block text-primary ps-2">{{ replay.name }} :</span>{{ replay.text }}
+                                                                </p>
+                                                                <div class="text-start">
+                                       <span class="d-inline-block mt-2 py-1 text-info px-2">
+                                       <i class="bi bi-calendar2-event"></i>{{ replay.created_ad }}
+                                       </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                {% endfor %}
+                                            {% endif %}
+                                    {% endfor %}
+
+                                </div>
+                            </div>
+                    </article>
+
+                    <div class="comment-form-rules">
+                        <div class="row d-inline">
+                            <div class="col-md-6">
+                                <form method="post" action="" class="comment-form">
+                                    <h6 class=" pb-3 border-bottom "><i class="bi bi-chat-right-text"></i>
+                                        {% csrf_token %}
+                                        در بهبود مقاله شریک باشید</h6>
+
+                                    <div class="row">
+
+                                        <h2 id="bb2"></h2>
+                                        <input type="hidden" id="bb" name="parent" value="">
+                                        <div class="col-12 mb-2">
+                                        </div>
+                                        <div class="col-12 mb-2">
+                                            <input type="text" name="name" class="form-control" placeholder="نام شما"
+                                                   id="validationCustomUsername" required>
+                                        </div>
+                                    </div>
+                                   
+                                    <div class="col-12"><textarea name='text' class="w-100 form-control"
+                                                                  rows="5" required></textarea>
+                                    </div>
+                                    <div class="text-start">
+                                        {% if request.user.is_authenticated %}
+                                            {% if request.user.blok == False %}
+                                                <button  style="font-size: 20px" class="mt-2" type="submit">ارسال</button>
+                                            {% else %}
+                                                <p class="pt-5">شما از گذاشتن کامنت محروم شدی</p>
+                                            {% endif %}
+                                        {% else %}
+                                            <a href="{% url 'acoont:register' %}">
+                                                <button  style="font-size: 20px" class="mt-2" type="button">ارسال</button>
+                                            </a>
+                                        {% endif %}
+
+
+                                        {% if milad == True %}
+                                            <p>s;lsd;flksd;flksd;flksdf</p>
+
+                                        {% endif %}
+
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                    </article>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function set(id) {
+            document.getElementById('bb').value = id;
+            document.getElementById('bb2').innerHTML = 'ریپلای شد';
+            window.location.href = '#exampleInputEmail1'
+
+        }
+    </script>
+{% endblock home %}

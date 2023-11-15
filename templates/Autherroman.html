@@ -1,0 +1,63 @@
+{% extends 'base.html' %}{% load static %}
+{% block title %}
+    <title>درخواست حذف رمان</title>
+{% endblock title %}
+{% block home %}
+    <section class="mb-5">
+        <div class="container">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-12">
+                    <div class="title-box mb-2">
+
+                    </div>
+                </div>
+                <div class="">
+                    <div class="not-found bg-white rounded border p-3 pb-5">
+                        <div class="text-center">
+                            <h4>درخواست حذف رمان</h4>
+                            <p>با عرض سلام خدمت شما دوست عزیز</p>
+                            <p>با استفاده از فرم زیر میتوانید درخواست حذف رمان خود را از سایت کلبه کتاب ارسال فرمایید</p>
+                        </div>
+                        <div>
+                            <h4>توضیحات</h4>
+                            <p>در خواست شما در صورتی ک مدارک ارسالی تکمیل و درست باشد در سریع ترین زمان ممکن برسی و پاسخ
+                                داده میشود</p>
+                            <h4 class="text-danger" style="font-size: xx-large">توجه کنید</h4>
+                            <p class="text-danger" style="font-size: large">سایت کلبه کتاب به صورت کاملا قانونی در حال
+                                فعالیت است و در وزارت،صنعت معدن و تجارت ثبت شده است</p>
+                            <p class="text-danger" style="font-size: large">لذا برای حذف رمان حتما یک قطعه عکس از کارت
+                                ملی یا شناسنامه الزامی میباشد.</p>
+                            <p>برای اطلاعات بیشتر و دریافت راهنمایی میتوانید به قسمت پشتیبانی مراجعه نمایید.</p>
+
+                        </div>
+                        <form action="" method="post" enctype="multipart/form-data"
+                              class="col-md-5 shadow p-3 bg-light container mt-5">
+                            {% csrf_token %}
+                            <h4 class="text-center">فرم ارسال اطلاعات</h4>
+                            <label for="" class="form-label">شماره تماس:</label>
+                            {{ form.user }}
+
+                            <label for="" class="form-label">اسم شما:</label>
+                            {{ form.name }}
+                            <label for="" class="form-label"> توضیحات :</label>
+                            {{ form.text }}
+                            <label for="" class="form-label pt-5">انتخواب عکس:</label>
+                            {{ form.file }}
+                            {% for error in form.user.errors %}
+                                <div class="alert alert-danger">
+                                    <p> {{ error }}</p>
+                                </div>
+                            {% endfor %}
+
+
+                            <button type="submit" class="mt-4">ارسال کردن</button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+{% endblock %}

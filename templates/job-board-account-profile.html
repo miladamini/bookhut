@@ -1,0 +1,465 @@
+{% extends 'base.html' %}{% load static %}
+{% block title %}
+    <title> تنظیمات پروفایل من</title>
+{% endblock title %}
+<!DOCTYPE html>
+<html lang="fa">
+<!-https://t.me/sabzrea ->
+{% block home %}
+    <!-- Mirrored from fixdevelopdemo.ir/theme/finder/demo/job-board-account-profile.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 17 Apr 2023 10:16:53 GMT -->
+    <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+    <head>
+        <meta charset="utf-8">
+
+        <!-- SEO Meta Tags-->
+        <meta name="description" content="Finder - Directory &amp; Listings Bootstrap Template">
+        <meta name="keywords"
+              content="bootstrap, business, directory, listings, e-commerce, car dealer, city guide, real estate, job board, user account, multipurpose, ui kit, html5, css3, javascript, gallery, slider, touch">
+        <meta name="author" content="Createx Studio">
+        <!-- Viewport-->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Favicon and Touch Icons-->
+        <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+        <link rel="manifest" href="site.webmanifest">
+        <link rel="mask-icon" color="#5bbad5" href="safari-pinned-tab.svg">
+        <meta name="msapplication-TileColor" content="#766df4">
+        <meta name="theme-color" content="#ffffff">
+
+
+        <!-- Vendor Styles-->
+        <link rel="stylesheet" media="screen" href="{% static 'prof/vendor/simplebar/dist/simplebar.min.css' %}"/>
+        <link rel="stylesheet" media="screen"
+              href="{% static 'prof/vendor/persain-date/persian-datepicker.min.css' %}"/>
+        <link rel="stylesheet" media="screen" href="{% static 'prof/css/theme.min.css' %}"/>
+        <!-- Main Theme Styles + Bootstrap-->
+
+    </head>
+    <!-- Body-->
+
+    <!-- Demo switcher (offcanvas)-->
+
+
+    <div class="container content-overlay mt-5 mb-md-4 py-5">
+        <!-- Breadcrumb-->
+
+        <!-- Page card like wrapper-->
+        <div class="bg-light shadow-sm rounded-3 p-4 p-md-5 mb-2">
+            <!-- Account header-->
+
+
+            <div class="d-flex align-items-start justify-content-between pb-4 mb-2">
+                <div class="d-flex align-items-start">
+
+
+                    <div class="position-relative flex-shrink-0">
+                        {% if request.user.img == '' %}
+                            <img class="rounded-circle"
+                                 src="https://ako.storage.iran.liara.space/userAvatar.png"
+                                 width="100"
+                                 alt="Annette Black">
+                        {% else %}
+                            <img class="rounded-circle"
+                                 src="{{ request.user.img.url }}"
+                                 width="100"
+                                 alt="Annette Black">
+                        {% endif %}
+                    </div>
+
+                    <div class="pe-3 pe-sm-4">
+                        <h3 class="h5">{{ request.user.username }}</h3>
+                        <ul class="list-unstyled fs-sm mb-0">
+                            <li class="d-flex text-nav text-break"><i
+                                    class="fi-mail opacity-60 mt-1 me-2"></i>
+                                {% if request.user.email == None %}
+                                    <span>ایمیلی وارد نکرده اید</span>
+                                {% else %}
+                                    <span>{{ request.user.email }}</span>
+                                {% endif %}
+                            </li>
+                            <li class="d-flex text-nav text-break"><i
+                                    class="fi-phone opacity-60 mt-1 me-2"></i><span>{{ request.user.phone }}</span>
+                            </li>
+                        </ul>
+
+
+                    </div>
+
+                </div>
+
+
+                <a class="nav-link p-0 d-none d-md-block" href="{% url 'acoont:logout' %}"><i
+                        class="fi-logout mt-n1 me-2"></i>خروج</a>
+
+            </div>
+
+            {#            {% for error in profFormPhone.phone.errors %}#}
+            {#                <p class="alert alert-danger" style="text-align: center">{{ error }}</p>#}
+            {#            {% endfor %}#}
+            {% for error in password.old_password.errors %}
+                <p class="alert alert-danger" style="text-align: center">{{ error }}</p>
+            {% endfor %}
+            {% for error in password.new_password1.errors %}
+                <p class="alert alert-danger" style="text-align: center">{{ error }}</p>
+            {% endfor %}
+            {% for error in form1.email.errors %}
+                <p class="alert alert-danger" style="text-align: center">{{ error }}</p>
+            {% endfor %}
+
+
+
+            <!-- Authorization info-->
+
+            <div class="row pt-4 mt-3">
+                <div class="col-lg-3">
+                    <h2 class="h5 font-vazir">اطلاعات ورود به اکانت</h2>
+                </div>
+                <div class="col-lg-9">
+                    <div class="border rounded-3 p-3" id="auth-info">
+                        <!-- Email-->
+                        <form method="post" data-formname="email" action="" class="comment-form">
+                            {% csrf_token %}
+                            <div class="border-bottom pb-3 mb-3">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div class="ps-2">
+                                        <label class="form-label fw-bold">پست الکترونیکی</label>
+                                        <div id="email-value">{% if request.user.email == None %}
+                                            <span>ایمیلی وارد نکرده اید</span>
+                                        {% else %}
+                                            <span>{{ request.user.email }} </span>
+                                        {% endif %}</div>
+                                    </div>
+                                    <div class="me-n3" data-bs-toggle="tooltip" title="ویرایش"><a class="nav-link py-0"
+                                                                                                  href="#email-collapse"
+                                                                                                  data-bs-toggle="collapse"><i
+                                            class="fi-edit"></i></a></div>
+                                </div>
+                                <div class="collapse" id="email-collapse" data-bs-parent="#auth-info">
+                                    <label for="" class="pt-2">ایمل خود را وارد کنید</label>
+                                    {{ form1.email }}
+                                    <input type="hidden" value="email1" name="email1">
+                                    <div class="row pt-4 mt-2">
+                                        <div class="col-lg-9 offset-lg-3">
+                                            <div class="d-flex align-items-center justify-content-between">
+                                                <button class="btn btn-primary rounded-pill px-3 px-sm-4"
+                                                        type="submit">ذخیره تغییرات
+                                                </button>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <!-- Password-->
+                        <form method="post" name="password" action="" class="comment-form">
+                            {% csrf_token %}
+                            <div>
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div class="ps-2">
+                                        <label class="form-label fw-bold">رمز عبور</label>
+                                        <div>************</div>
+                                    </div>
+                                    <div class="me-n3" data-bs-toggle="tooltip" title="ویرایش"><a class="nav-link py-0"
+                                                                                                  href="#password-collapse"
+                                                                                                  data-bs-toggle="collapse"><i
+                                            class="fi-edit"></i></a></div>
+                                </div>
+
+                                <div class="collapse" id="password-collapse" data-bs-parent="#auth-info">
+
+                                    {% if request.user.password != '' %}
+                                        <div class="row gx-3 align-items-center my-3">
+                                            <label class="col-sm-4 col-md-3 col-form-label"
+                                                   for="account-password-current">رمز
+                                                عبور فعلی:</label>
+                                            <div class="col-sm-8 col-md-9">
+                                                <div class="password-toggle">
+                                                    {{ password.old_password }}
+                                                    <input type="hidden" value="password1" name="password1">
+                                                    <label class="password-toggle-btn" aria-label="Show/hide password">
+                                                        <input class="password-toggle-check" name="old_password"
+                                                               type="checkbox"><span
+                                                            class="password-toggle-indicator"></span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                    <div class="row gx-3 align-items-center my-3">
+                                        <label class="col-sm-4 col-md-3 col-form-label" for="account-password-new">رمز
+                                            عبور جدید:</label>
+                                        <div class="col-sm-8 col-md-9">
+                                            <div class="password-toggle">
+                                                {{ password.new_password1 }}
+                                                <input type="hidden" value="password1" name="password1">
+                                                <label class="password-toggle-btn" aria-label="Show/hide password">
+                                                    <input class="password-toggle-check" type="checkbox"><span
+                                                        class="password-toggle-indicator"></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row gx-3 align-items-center">
+                                        <label class="col-sm-4 col-md-3 col-form-label" for="account-password-confirm">تایید
+                                            رمز عبور جدید:</label>
+                                        <div class="col-sm-8 col-md-9">
+                                            <div class="password-toggle">
+                                                {{ password.new_password2 }}
+                                                <label class="password-toggle-btn" aria-label="Show/hide password">
+                                                    <input class="password-toggle-check" type="checkbox"><span
+                                                        class="password-toggle-indicator"></span>
+                                                </label>
+                                            </div>
+                                            <div class="row pt-4 mt-2">
+                                                <div class="col-lg-9 offset-lg-3">
+                                                    <div class="d-flex align-items-center justify-content-between">
+                                                        <a
+                                                                class="fs-sm" href="{% url 'Passwordreset' %}">رمز عبور
+                                                            را فراموش کرده اید؟</a>
+                                                        <button class="btn btn-primary rounded-pill px-3 px-sm-4"
+                                                                type="submit">ذخیره تغییرات
+                                                        </button>
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Personal details-->
+            <div class="row pt-4 mt-2">
+                <div class="col-lg-3">
+                    <h2 class="h5 font-vazir">اطلاعات فردی</h2>
+                </div>
+                <div class="col-lg-9">
+                    <div class="border rounded-3 p-3" id="personal-details">
+                        <!-- Full name-->
+                        <form action="" name="img" enctype="multipart/form-data" method="post">
+                            {% csrf_token %}
+                            <div class="border-bottom pb-3 mb-3">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div class="ps-2">
+                                        <label class="form-label fw-bold">تغیر پروفایل</label>
+                                        <div id="fn-value"></div>
+                                    </div>
+
+                                    <div class="me-n3" data-bs-toggle="tooltip" title="تغیر پروفایل"><a
+                                            class="nav-link py-0"
+                                            href="#fn-collapse1"
+                                            data-bs-toggle="collapse"><i
+                                            class="fi-pencil fs-xs"></i></a></div>
+                                </div>
+                                <div class="collapse" id="fn-collapse1" data-bs-parent="#personal-details">
+                                    {{ imgprof.img }}
+                                    <input type="hidden" value="img1" name="img1">
+                                    <div class="row pt-4 mt-2">
+                                        <div class="col-lg-9 offset-lg-3">
+                                            <div class="d-flex align-items-center justify-content-between">
+                                                <button class="btn btn-primary rounded-pill px-3 px-sm-4"
+                                                        type="submit">ذخیره تغییرات
+                                                </button>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <form action="" name="username" method="post">
+                            {% csrf_token %}
+                            <div class="border-bottom pb-3 mb-3">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div class="ps-2">
+                                        <label class="form-label fw-bold">نام کاربری</label>
+                                        <div id="fn-value">{{ request.user.username }}</div>
+                                    </div>
+                                    <div class="me-n3" data-bs-toggle="tooltip" title="ویرایش"><a class="nav-link py-0"
+                                                                                                  href="#fn-collapse"
+                                                                                                  data-bs-toggle="collapse"><i
+                                            class="fi-edit"></i></a></div>
+                                </div>
+                                <div class="collapse" id="fn-collapse" data-bs-parent="#personal-details">
+                                    {{ formUsername.username }}
+                                    <input type="hidden" value="usernamein" name="usernamein">
+                                    <div class="row pt-4 mt-2">
+                                        <div class="col-lg-9 offset-lg-3">
+                                            <div class="d-flex align-items-center justify-content-between">
+                                                <button class="btn btn-primary rounded-pill px-3 px-sm-4"
+                                                        type="submit">ذخیره تغییرات
+                                                </button>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+
+                        <!-- Phone number-->
+                        <div class="border-bottom pb-3 mb-3">
+                            <form method="post" action="" name="phone" class="comment-form">
+                                {% csrf_token %}
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div class="ps-2">
+                                        <label class="form-label fw-bold">شماره تماس</label>
+                                        <div id="phone-value">{{ request.user.phone }}</div>
+                                    </div>
+                                    <div class="me-n3" data-bs-toggle="tooltip" title="ویرایش"><a class="nav-link py-0"
+                                                                                                  href="#phone-collapse"
+                                                                                                  data-bs-toggle="collapse"><i
+                                            class="fi-edit"></i></a></div>
+                                </div>
+                                <div class="collapse" id="phone-collapse" data-bs-parent="#personal-details">
+                                    <input type="hidden" name="phonein">
+                                    {#                                    {{ profFormPhone.phone }}#}
+                                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                        <span class="fw-bold">فعلا نمیتوان شماره خود راتغیر داد به زودی این امکان اضافه خواهد شد</span>
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                                aria-label="Close"></button>
+                                    </div>
+                                    <div class="row pt-4 mt-2">
+                                        <div class="col-lg-9 offset-lg-3">
+                                            <div class="d-flex align-items-center justify-content-between">
+                                                {#                                                <button class="btn btn-primary rounded-pill px-3 px-sm-4"#}
+                                                {#                                                        type="submit">ذخیره تغییرات#}
+                                                {#                                                </button>#}
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- Socials-->
+                        <div>
+                            <form action="" name="link" method="post">
+                                {% csrf_token %}
+                                <div class="d-flex align-items-center justify-content-between">
+
+                                    <div class="ps-2">
+                                        <label class="form-label fw-bold">شبکه های اجتماعی</label>
+
+                                        <ul class="list-unstyled mb-0">
+                                            <li id="facebook-value">
+                                                <div class="btn btn-icon btn-light btn-xs shadow-sm rounded-circle pe-none flex-shrink-0 me-3">
+                                                    <i class="fi-facebook text-body"></i></div>
+                                                <a href="{{ request.user.facebook }}"><span>{{ request.user.facebook }}</span></a>
+
+
+                                            </li>
+                                            <li id="twitter-value">
+                                                <div class="btn btn-icon btn-light btn-xs shadow-sm rounded-circle pe-none flex-shrink-0 me-3">
+                                                    <i class="fi-twitter text-body"></i></div>
+                                                <a href="{{ request.user.twitter }}"><span>{{ request.user.twitter }}</span></a>
+
+                                            </li>
+                                            <li id="instagram-value">
+                                                <div class="btn btn-icon btn-light btn-xs shadow-sm rounded-circle pe-none flex-shrink-0 me-3">
+                                                    <i class="fi-instagram text-body"></i></div>
+                                                <a href="{{ request.user.instagram }}"><span>{{ request.user.instagram }}</span></a>
+
+                                            </li>
+                                            <li id="behance-value">
+                                                <div class="btn btn-icon btn-light btn-xs shadow-sm rounded-circle pe-none flex-shrink-0 me-3">
+                                                    <i class="fi-airbnb text-body"></i></div>
+                                                <a href="{{ request.user.airbnb }}"><span>{{ request.user.airbnb }}</span></a>
+                                            </li>
+                                            <br>
+                                        </ul>
+                                    </div>
+                                    <div class="me-n3" data-bs-toggle="tooltip" title="ویرایش"><a class="nav-link py-0"
+                                                                                                  href="#socials-collapse"
+                                                                                                  data-bs-toggle="collapse"><i
+                                            class="fi-edit"></i></a></div>
+                                </div>
+                                <div class="collapse mt-3" id="socials-collapse" data-bs-parent="#personal-details">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <div class="btn btn-icon btn-light btn-xs shadow-sm rounded-circle pe-none flex-shrink-0 me-3">
+                                            <i class="fi-facebook text-body"></i></div>
+                                        <input type="hidden" value="link1" name="link1">
+                                        {{ link.facebook }}
+                                    </div>
+                                    <div class="d-flex align-items-center mb-3">
+                                        <div class="btn btn-icon btn-light btn-xs shadow-sm rounded-circle pe-none flex-shrink-0 me-3">
+                                            <i class="fi-instagram text-body"></i></div>
+                                        {{ link.instagram }}
+                                    </div>
+                                    <div class="d-flex align-items-center mb-3">
+                                        <div class="btn btn-icon btn-light btn-xs shadow-sm rounded-circle pe-none flex-shrink-0 me-3">
+                                            <i class="fi-twitter text-body"></i></div>
+                                        {{ link.twitter }}
+                                    </div>
+                                    <div class="collapse" id="showMoreSocials">
+                                        <div class="d-flex align-items-center mb-3">
+                                            <div class="btn btn-icon btn-light btn-xs shadow-sm rounded-circle pe-none flex-shrink-0 me-3">
+                                                <i class="fi-airbnb text-body"></i></div>
+                                            {{ link.airbnb }}
+                                        </div>
+                                    </div>
+                                    <a class="collapse-label collapsed d-inline-block fs-sm fw-bold text-decoration-none pt-2 pb-3"
+                                       href="#showMoreSocials" data-bs-toggle="collapse"
+                                       data-bs-label-collapsed="موارد بیشتر" data-bs-label-expanded="بستن" role="button"
+                                       aria-expanded="false" aria-controls="showMoreSocials"><i
+                                            class="fi-arrow-down me-2"></i></a>
+                                    <div class="row pt-4 mt-2">
+                                        <div class="col-lg-9 offset-lg-3">
+                                            <div class="d-flex align-items-center justify-content-between">
+                                                <button class="btn btn-primary rounded-pill px-3 px-sm-4" type="submit">
+                                                    ذخیره تغییرات
+                                                </button>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Account settings-->
+
+            <!-- Two-factor authentication-->
+
+            <!-- Action buttons-->
+
+        </div>
+    </div>
+    </main>
+
+    <!-- Main theme script-->
+    <script src="{% static 'prof/js/theme.min.js' %}"></script>
+    <script src="{% static 'prof/vendor/persain-date/persian-datepicker.min.js' %}"></script>
+    <script src="{% static 'vendor/persain-date/persian-date.js' %}"></script>
+    <script src="{% static 'vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js' %}"></script>
+    <script src="{% static 'vendor/simplebar/dist/simplebar.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'vendor/jquery-3.6.0.js' %}"></script>
+    <script>
+        $('#date-birth').persianDatepicker({
+            initialValue: true,
+            format: 'YYYY/MM/DD'
+        });
+    </script>
+
+{% endblock home %}
+
+<!-- Mirrored from fixdevelopdemo.ir/theme/finder/demo/job-board-account-profile.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 17 Apr 2023 10:16:53 GMT -->
+</html>

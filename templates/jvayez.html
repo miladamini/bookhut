@@ -1,0 +1,46 @@
+{% extends 'base.html' %}{% load static %}
+{% block home %}
+    <section class="mb-5">
+        <div class="container">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-12">
+                    <div class="title-box mb-2">
+
+                    </div>
+                </div>
+                <div class="">
+                    <div class="not-found bg-white rounded border p-5 pb-5">
+                        <div class="text-center">
+                            <h4>ارسال جواب ها</h4>
+                            <p>با عرض سلام خدمت شما دوست عزیز</p>
+                            <p>اگر جواب سوال هارو پیدا کردی میتونی در فرم زیر جواب هارو ارسال کنی </p>
+                            <h4>راهنما</h4>
+                            <p>1-در قسمت اسم رمان در فرم زیر نام رمان مورد نظر را وارد کنید</p>
+                            <p>2-در قسمت جواب ،میتوانید جواب هارا بنویسد و ارسال کنید</p>
+                            <p class="pb-2">توجه داشته باشید اگر جواب های شما درست باشد به شما اطلاع داده میشود و جوایز
+                                خود را دریافت میکنید</p>
+                            <h4 class="p-3">سوالات</h4>
+                            <p>{{ soalat.text | safe }}</p>
+                        </div>
+
+                        <form action="" method="post" enctype="multipart/form-data"
+                              class="col-md-5 shadow p-3 bg-light container">
+                            {% csrf_token %}
+                            <h4 class="text-center"> ارسال جواب سوال ها</h4>
+
+                            <label for="" class="form-label">اسم رمان:</label>
+                            <input name="roman" type="text" class="form-control" placeholder="اسم رمان">
+                            <label for="" class="form-label"> جواب :</label>
+                            <textarea name="text" id="" cols="30" rows="10" class="form-control"
+                                      placeholder="جواب سوال ها "></textarea>
+                            <button type="submit" class="mt-4">ارسال کردن</button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+{% endblock %}

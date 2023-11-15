@@ -1,0 +1,30 @@
+{% extends 'base.html' %}{% load static %}
+{% block title %}
+    <title>خطای درگاه پرداخت</title>
+{% endblock title %}
+{% block home %}
+    <section class="mb-5">
+        <div class="container">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-12">
+                    <div class="title-box mb-2">
+                        <p class="m-0 p-0"><span class="text-primary">خرید</span></p>
+                        <span class="d-block"><a href="{% url 'homeView' %}">بازگشت به صفحه اصلی</a> <i
+                                class="bi bi-arrow-left position-relative"></i></span>
+                    </div>
+                </div>
+                <div class="col-md-8 text-center">
+                    <div class="not-found bg-white rounded border p-3 pb-5">
+                     <span class="my-3 my-md-4">
+                    خرید شما موفقیت امیز بود
+                     </span>
+                        <p class="m-0">{{ id }}شماره پیگیری</p>
+                        <span class="d-block my-3">بازگشت به <a href="{% url 'homeView' %}">صفحه اصلی</a> سایت</span>
+                        <div class="search-box px-0 px-md-5 mt-5">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

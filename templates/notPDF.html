@@ -1,0 +1,45 @@
+{% extends 'base.html' %}{% load static %}
+{% block title %}
+    <title>PDFوجود ندارد </title>
+{% endblock title %}
+{% block home %}
+      <section class="mb-5">
+         <div class="container">
+            <div class="row justify-content-center align-items-center">
+               <div class="col-12">
+                  <div class="title-box mb-2">
+                     <p class="m-0 p-0"><span class="text-primary">خطا</span></p>
+                     <span class="d-block"><a href="{% url 'homeView' %}">بازگشت به صفحه اصلی</a> <i class="bi bi-arrow-left position-relative"></i></span>
+                  </div>
+               </div>
+               <div class="col-md-8 text-center">
+                  <div class="not-found bg-white rounded border p-3 pb-5">
+                     <span class="my-3 my-md-4">
+                    باید نوشتن رمان به اتمام برسد تا فایل PDF ان قرار بگیرد فعلا میتوانید پارت های ان را بخوانید
+                     </span>
+                     <p class="m-0">متاسفانه محتوا مد نظر یافت نشد !</p>
+                     <span class="d-block my-3">بازگشت به <a href="{% url 'homeView' %}">صفحه اصلی</a> سایت</span>
+                     <div class="search-box px-0 px-md-5 mt-5">
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-L2W3M8F38X"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-L2W3M8F38X');
+</script>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TWRLRJ7"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+{% endblock %}

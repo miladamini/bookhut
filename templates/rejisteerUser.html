@@ -1,0 +1,83 @@
+{% extends 'base.html' %}{% load static %}
+{% block title %}
+    <title>لاگین </title>
+{% endblock title %}
+{% block home %}
+
+    <main class="page-wrapper">
+
+
+        <!-- Page content-->
+        <div class="container-fluid d-flex h-100 align-items-center justify-content-center py-4 py-sm-5">
+
+            <div class="card card-body" style="max-width: 940px"><a
+                    class="position-absolute top-0 end-0 nav-link fs-sm py-1 px-2 mt-3 me-3" href=""
+                    onclick="window.history.go(-1); return false;"><i class="fi-arrow-long-right fs-base me-2"></i>برگشت</a>
+                <div class="row mx-0 align-items-center">
+                    <div class="col-md-6 border-end-md p-4 p-sm-5">
+                        <h2 class="h3 mb-4 mb-sm-5">سلام!<br>به سایت ما خوش آمدید.</h2><img
+                            class="d-block mx-auto rotate-img" src="{% static 'prof/img/signin-modal/signin.svg' %}"
+                            width="344" alt="Illustartion">
+                        <div class="mt-4 mt-sm-5">هنوز ثبت نام نکرده اید؟ <a href="{% url 'acoont:register' %}">ثبت
+                            نام</a></div>
+                    </div>
+                    <div class="col-md-6 px-4 pt-2 pb-4 px-sm-5 pb-sm-5 pt-md-5">
+
+                        {% if  ramz == True %}
+                            <div role="alert" aria-live="assertive" aria-atomic="true">
+                                <div class="toast-header bg-primary text-white">
+                                    <i class="fi-bell me-2"></i>
+                                    <span class="fw-bold me-auto">رمز عبور</span>
+                                </div>
+                                <div class="toast-body text-primary"> رمز عبور شما به شماره وارد شده ارسال گردید لطفا
+                                    رمز عبور را وارد کنید
+                                </div>
+                            </div>
+
+                        {% endif %}
+                        {% for error in form.phone.errors %}
+                            <div class="alert alert-warning d-flex" role="alert">
+                                <i class="fi-alert-triangle me-2 me-sm-3 lead"></i>
+                                <div>{{ error }}</div>
+                            </div>
+
+                        {% endfor %}
+                        {% for error in form.password.errors %}
+                            <div class="alert alert-warning d-flex" role="alert">
+                                <i class="fi-alert-triangle me-2 me-sm-3 lead"></i>
+                                <div>{{ error }}</div>
+                            </div>
+                        {% endfor %}
+                        <div class="d-flex align-items-center py-3 mb-3">
+                            <hr class="w-100">
+                            <div class="px-3"> ورود</div>
+                            <hr class="w-100">
+                        </div>
+                        <form method="post" class="needs-validation" novalidate>
+                            {% csrf_token %}
+                            <div class="mb-4">
+                                <label class="form-label mb-2" for="signin-email">شماره تلفن</label>
+                                {{ form.phone }}
+                            </div>
+                            <div class="mb-4">
+                                <div class="d-flex align-items-center justify-content-between mb-2">
+                                    <label class="form-label mb-0" for="signin-password">رمز عبور</label><a
+                                        class="fs-sm" href="{% url 'Passwordreset' %}">رمز عبور را فراموش کرده اید؟</a>
+                                </div>
+                                <div class="password-toggle">
+                                    {{ form.password }}
+                                    <label class="password-toggle-btn" aria-label="Show/hide password">
+                                        <input class="password-toggle-check" type="checkbox"><span
+                                            class="password-toggle-indicator"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary btn-lg w-100" type="submit">ورود به حساب کاربری</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+{% endblock home %}

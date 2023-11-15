@@ -1,0 +1,376 @@
+{% extends 'base.html' %}{% load static %}
+{% block title %}
+    <title>{{ post.title }}</title>
+{% endblock title %}
+{% block home %}
+
+
+
+    <!-- Mirrored from fixdevelopdemo.ir/theme/finder/demo/job-board-blog-single.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 17 Apr 2023 10:16:57 GMT -->
+    <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+    <head>
+        <meta charset="utf-8">
+        <title>قالب Finder | قالب چند منظوره فایندر کاریابی | جزئیات وبلاگ</title>
+        <!-- SEO Meta Tags-->
+        <meta name="description" content="Finder - Directory &amp; Listings Bootstrap Template">
+        <meta name="keywords"
+              content="bootstrap, business, directory, listings, e-commerce, car dealer, city guide, real estate, job board, user account, multipurpose, ui kit, html5, css3, javascript, gallery, slider, touch">
+        <meta name="author" content="Createx Studio">
+        <!-- Viewport-->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Favicon and Touch Icons-->
+        <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+        <link rel="manifest" href="site.webmanifest">
+        <link rel="mask-icon" color="#5bbad5" href="safari-pinned-tab.svg">
+        <meta name="msapplication-TileColor" content="#766df4">
+        <meta name="theme-color" content="#ffffff">
+        <!-- Page loading styles-->
+    </head>
+    <main class="page-wrapper">
+        <!-- Page container-->
+        <div class="container mt-5 pt-5">
+            <!-- Breadcrumb + Page title-->
+            <nav class="mb-3 mb-md-4 pt-md-3" aria-label="Breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'homeView' %}">خانه</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'catgory' %}">رمان ها</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ post.title }}</li>
+                </ol>
+            </nav>
+            <h1 class="h2 pb-3 font-vazir">{{ post.title }}</h1><img class="rounded-3" src="{{ post.img.url }}"
+                                                                     alt="{{ post.alt }}">
+            <div class="row mt-4 pt-3">
+                <!-- Post content-->
+                <div class="col-lg-8">
+                    <!-- Post meta-->
+                    <div class="d-flex flex-wrap border-bottom pb-3 mb-4"><a
+                            class="text-uppercase text-decoration-none border-end pe-3 me-3 mb-2"
+                            href="{% url 'catgory' %}">رمان ها</a>
+                        <div class="d-flex align-items-center border-end pe-3 me-3 mb-2"><i
+                                class="fi-calendar-alt opacity-70 me-2"></i><span>{{ milad.miladtime }}</span></div>
+                        <a class="nav-link-muted d-flex align-items-center mb-2" href="#comments" data-scroll><i
+                                class="fi-chat-circle opacity-70 me-2"></i><span>{{ po }} نظر</span></a>
+                    </div>
+                    <p class="fs-lg fw-bold text-dark mb-4 font-vazir">{{ post.body | safe }}</p>
+                    <!-- Video-->
+                    <div class="py-4 mb-2">
+                        <div class="position-relative">
+                            {#                            <img class="rounded-3" src="{{ post.img2.url }}" alt="{{ post.alt }}"></div>#}
+                        </div>
+                        <p class="m-0">{{ post.body2 | safe }}</p>
+                        <div class="card card-flush pb-3 pb-lg-0 mb-4">
+                            <div class="card-body">
+                                <div class="d-flex align-items-start"><img class="rounded-circle "
+                                                                           src="{{ post.imgProf.url }}" width="80"
+                                                                           alt="Kristin Watson">
+                                    <div class="pe-5 ps-5">
+                                        <p class="fs-sm text-muted">نویسنده</p>
+                                        <h3 class="h6 mb-2 fw-500">{{ post.name }}</h3>
+                                    </div>
+                                    <div class="pe-3">
+                                        <p class="fs-sm text-muted">وضعیت رمان</p>
+                                        <h3 class="h6 mb-2 fw-500">{{ post.get_Condition_display }}</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {% if post.eshtrak == True %}
+                            {% if request.user.eshtrak == True or Buy == True %}
+                                {% if request.user.is_authenticated %}
+                                    {% if Userjv == False %}
+                                        <a href="{{ post.link_p }}">
+                                            <button type="button" class="btn btn-primary d-block">دانلود فایل PDF
+                                            </button>
+                                        </a>
+                                    {% else %}
+                                    {% endif %}
+                                {% else %}
+                                    <a href="{% url 'acoont:register' %}">
+                                        <button type="button" class="btn btn-primary d-block">دانلود فایل PDF
+                                        </button>
+                                    </a>
+                                {% endif %}
+
+
+                            {% else %}
+                                {% if request.user.is_authenticated %}
+                                    <div class="b-slider-btn">
+                                    <a href="{% url 'eshtrak' %}"
+                                       class="bg-warning rounded d-block p-3 shadow-sm text-center my-1 my-md-3  text-dark"
+                                       style="font-size: 20px"><i
+                                            class="bi bi-gem"></i> خرید عضویت ویژه</a>
+                                {% else %}
+                                    <div class="b-slider-btn">
+                                    <a href="{% url 'acoont:register' %}"
+                                       class="bg-warning rounded d-block p-3 shadow-sm text-center my-1 my-md-3  text-dark"
+                                       style="font-size: 20px"><i
+                                            class="bi bi-gem"></i> خرید عضویت ویژه</a>
+                                {% endif %}
+                            </div>
+                                {% if request.user.is_authenticated %}
+                                    <div class="b-slider-btn">
+                                        <a href="{% url 'sen2' %}"
+                                           class="bg-success rounded d-block p-3 shadow-sm text-center my-1 my-md-3  text-dark"
+                                           style="font-size: 20px"><i
+                                                class="bi bi-gem"></i> خرید رمان به صورت تنها</a>
+                                    </div>
+                                {% else %}
+                                    <div class="b-slider-btn">
+                                        <a href="{% url 'acoont:register' %}"
+                                           class="bg-success rounded d-block p-3 shadow-sm text-center my-1 my-md-3  text-dark"
+                                           style="font-size: 20px"><i
+                                                class="bi bi-gem"></i> خرید رمان به صورت تنها</a>
+                                    </div>
+                                {% endif %}
+                                <h2>قیمت:{{ post.buy_rom }}تومان </h2>
+
+
+                            {% endif %}
+
+                        {% else %}
+
+                            {% if request.user.is_authenticated %}
+                                <a href="{{ post.link_p }}">
+                                    <button type="button" class="btn btn-primary d-block">دانلود فایل PDF</button>
+                                </a>
+                            {% else %}
+
+                                <a href="{% url 'acoont:register' %}">
+                                    <button type="button" class="btn btn-primary d-block">دانلود فایل PDF</button>
+                                </a>
+                            {% endif %}
+                        {% endif %}
+
+
+
+
+                        {% if post.eshtrak == True %}
+                            {% if request.user.eshtrak == True or Buy == True %}
+                                {% if request.user.is_authenticated %}
+                                    {% if Userjv == False %}
+                                        <p>
+                                            <button class="btn btn-primary mt-3" type="button" data-bs-toggle="collapse"
+                                                    data-bs-target="#collapseWidthExample" aria-expanded="false"
+                                                    aria-controls="collapseWidthExample">
+                                                پارت های رمان
+                                            </button>
+                                        </p>
+                                    {% endif %}
+                                    {% if post.javyez == True %}
+                                        <h6 class="alert-info p-3">توجه داشته باشید وقتی روی دکمه پایین کلیک کنید
+                                            بعد از آن نمیتوانید رمان را دوباره بخوانید تا زمانی رمان از دوره جایزه
+                                            حذف بشه ،پس با دقت رمان رو مطالعه کیند.</h6>
+                                        <a href="{% url '.Competition' post.id %} ">
+                                            <button>من جواب هارو پیدا کردم 😍😍</button>
+                                        </a>
+                                    {% endif %}
+                                {% else %}
+                                    <p>
+                                        <a href="{% url 'acoont:register' %}">
+                                            <button class="btn btn-primary mt-3" type="button">
+                                                پارت های رمان
+                                            </button>
+                                        </a>
+
+                                    </p>
+                                {% endif %}
+
+                            {% endif %}
+                        {% else %}
+                            {% if request.user.is_authenticated %}
+                                <p>
+                                    <a href="http://127.0.0.1:8000/part/{{ li }}">
+                                        <button class="btn btn-primary mt-3">
+                                            پارت های رمان
+                                        </button>
+                                    </a>
+
+                                </p>
+
+                            {% else %}
+                                <p>
+                                    <a href="{% url 'acoont:register' %}">
+                                        <button class="btn btn-primary mt-3" type="button">
+                                            پارت های رمان
+                                        </button>
+                                    </a>
+
+                                </p>
+
+                            {% endif %}
+                        {% endif %}
+                        <div class="alert alert-secondary d-flex" role="alert">
+                            <div>اگر شما نویسنده رمان هستید و درخواست حذف رمان رو دارید روی دکمه حذف کلیک کنید
+                                <a href="{% url 'Autherroman' %}">
+                                    <button type="button" class="btn btn-outline-danger btn-icon">
+                                        <i class="fi-trash"></i>
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                        <hr class="mb-2">
+
+                        <!-- Comments-->
+                        <div class="mb-4 mb-md-5" id="comments">
+                            <h3 class="mb-4 pb-2 font-vazir">{{ po }} نظر ثبت شده</h3>
+                            <!-- Comment-->
+                            {% for comman in post.comments.all %}
+                                {% if comman.parent == None %}
+                                    <div class="pb-4 pt-2 mb-4">
+                                    <p>{{ comman.text }}</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="d-flex align-items-center ps-2">{% if comman.user.img %}
+                                            <img class="rounded-circle me-1"
+                                                 src="{{ comman.user.img.url }}"
+                                                 width="48"
+                                                 alt="Avatar">
+                                        {% else %}
+                                            <img class="rounded-circle me-1"
+                                                 src="https://ako.storage.iran.liara.space/userAvatar.png"
+                                                 width="48"
+                                                 alt="Avatar">
+
+                                        {% endif %}
+                                            <div class="pe-2">
+                                                {% if comman.user_admin == True %}
+
+                                                    <h6 class="fs-base mb-0">{{ comman.name }}<span
+                                                            class="badge bg-info rounded-pill fs-xs ms-2">admin</span>
+                                                    </h6>
+                                                    <span
+                                                            class="text-muted fs-sm">{{ comman.created_ad }}</span>
+
+                                                {% else %}
+
+                                                    <h6 class="fs-base mb-0">{{ comman.name }}</h6><span
+                                                        class="text-muted fs-sm">{{ comman.created_ad }}</span>
+
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                        <button class="btn btn-link btn-sm" onclick="set({{ comman.id }})"
+                                                type="button"><i
+                                                class="fi-reply fs-lg me-2"></i><span class="fw-normal">پاسخ</span>
+                                        </button>
+                                    </div>
+                                {% endif %}
+                            {% for replay in comman.riplay.all %}
+                                <div class="border-start border-4 pe-4 me-4 mt-4">
+                                    <p>{{ replay.text }}</p>
+                                    <div class="d-flex align-items-center ps-2">
+                                        {% if replay.user.img %}
+                                            <img class="rounded-circle me-1"
+                                                 src="{{ replay.user.img.url }}"
+                                                 width="48"
+                                                 alt="Avatar">
+                                        {% else %}
+                                            <img class="rounded-circle me-1"
+                                                 src="https://ako.storage.iran.liara.space/userAvatar.png"
+                                                 width="48"
+                                                 alt="Avatar">
+
+                                        {% endif %}
+                                        <div class="pe-2">
+                                            {% if replay.user_admin == True %}
+
+                                                <h6 class="fs-base mb-0">{{ replay.name }}<span
+                                                        class="badge bg-info rounded-pill fs-xs ms-2">admin</span></h6>
+                                                <span
+                                                        class="text-muted fs-sm"></span>
+
+                                            {% else %}
+
+                                                <h6 class="fs-base mb-0">{{ replay.name }}</h6>
+
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                            {% endfor %}
+                            {% endfor %}
+
+
+                        </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- Comment form-->
+                <div class=" py-5">
+                    <div class="container py-md-2 py-lg-4">
+                        <div class="row justify-content-center">
+                            <div class="col-md-10 col-xl-8">
+                                <h3 class="text-center mb-4 pb-sm-2 font-vazir">ثبت نظر برای این رمان</h3>
+                                <form class="needs-validation row gy-md-4 gy-3 pb-sm-2" method="post" novalidate>
+                                    {% csrf_token %}
+                                    <h2 id="bb2" style="color: #c57d25"></h2>
+                                    <input type="hidden" id="bb" name="parent" value="">
+                                    <div class="col-12 mb-2">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label class="form-label" for="comment-name">نام و نام خانوادگی</label>
+                                        <input class="form-control form-control-lg" name="name" type="text"
+                                               id="comment-name"
+                                               placeholder="نام شما" required>
+                                        <div class="invalid-feedback">نام خود را وارد کنید</div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label class="form-label" for="comment-email">پست الکترونیکی</label>
+                                        <input class="form-control form-control-lg" type="email" id="comment-email"
+                                               placeholder="ایمیل شما" required>
+                                        <div class="invalid-feedback">یک ایمیل معتبر وارد کنید</div>
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label" for="comment-text">متن نظر</label>
+                                        <textarea class="form-control form-control-lg" id="comment-text" name="text"
+                                                  rows="4"
+                                                  placeholder="متن نظر شما..." required></textarea>
+                                        <div class="invalid-feedback">متن نظر خود را تایپ کنید</div>
+                                    </div>
+
+                                    <div class="col-12 text-center pt-2">
+                                        {% if request.user.is_authenticated %}
+                                            {% if request.user.blok == False %}
+                                                <button class="btn btn-lg btn-primary rounded-pill" type="submit">ثبت
+                                                    نظر
+                                                </button>
+                                            {% else %}
+                                                <p class="pt-5">شما از گذاشتن کامنت محروم شدی</p>
+                                            {% endif %}
+                                        {% else %}
+                                            <a href="{% url 'acoont:register' %}">
+                                                <button class="btn btn-lg btn-primary rounded-pill" type="button">ثبت
+                                                    نظر
+                                                </button>
+                                            </a>
+                                        {% endif %}
+
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </main>
+
+    <!-- Filters sidebar toggle button (mobile)-->
+
+    <!-- Vendor scrits: js libraries and plugins-->
+
+    <script>
+        function set(id) {
+            document.getElementById('bb').value = id;
+            document.getElementById('bb2').innerHTML = 'ریپلای شد';
+            window.location.href = '#exampleInputEmail1';
+            var MySection = document.getElementById("bb2");
+            MySection.scrollIntoView({block: 'start', behavior: 'smooth', inline: 'start'});
+
+        }
+
+    </script>
+{% endblock home %}
