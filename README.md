@@ -12,6 +12,10 @@ pip install colorfield
 pip install admin_interface
 ```
 
+```bash
+python manage.py migrate
+```
+
 ### In this project, the Telegram bot has been connected to the website
 
 
